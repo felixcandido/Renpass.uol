@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const accessoriesSchema = new mongoose.Schema({
 	description: {
-		type: String
+		type: String,
+		required: true
 	}
-});
+}, {_id: false, versionKey: false});
 
 const vehiclesSchema = new mongoose.Schema({
 	model: {
@@ -29,7 +30,8 @@ const vehiclesSchema = new mongoose.Schema({
 	},
 	accessories: {
 		type: [accessoriesSchema],
-		required: true
+		required: true,
+
 	},
 	passengersQtd: {
 		type: Number
