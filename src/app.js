@@ -1,10 +1,21 @@
 const express = require("express");
 require("./config/database");
-const routes = require("./routes/routes");
+const router = require("./routes/");
 
-const app = express();
+class App  {
+	constructor() {
+		this.server = express();
+		this.middlewares();
+		this.routes();
+	}
 
-app.use(express.json());
-app.use(routes);
+	middlewares() {
+		this.server.use(express.json());
+	}
 
-module.exports = app;
+	routes() {
+		router(this.server);
+	}
+} 
+
+module.exports = new App().server;

@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
+require("dotenv/config");
+class Database {
+	constructor() {
+		this.connect();
+	}
+        
+	connect() {
+		return mongoose.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_COLLECTION}`);
+	}
+}
 
-mongoose.connect("mongodb://localhost:27017");
-
-const database = mongoose.connection;
-
-module.exports = database;
+module.exports = new Database().connect();
