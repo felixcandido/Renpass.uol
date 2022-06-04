@@ -18,7 +18,6 @@ class CarRepository {
 
 	static async updateCar(carId, reqBody) {
 		const updatedCar = await Vehicles.findByIdAndUpdate(carId, reqBody);
-		console.log(updatedCar);
 		return updatedCar;
 	}
 
