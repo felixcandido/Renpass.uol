@@ -35,6 +35,15 @@ class CarController{
 			res.status(400).send(error);
 		}
 	}
+
+	static async deleteCar(req, res) {
+		try {
+			await CarServices.deleteCar(req.params.CarId);
+			res.status(204).end();
+		} catch(error) {
+			res.status(400).send(error);
+		}
+	}
 }
 
 module.exports = CarController;

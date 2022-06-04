@@ -20,6 +20,10 @@ class CarServices {
 		const updatedCar = await CarRepository.updateCar(carId, reqBody);
 		return updatedCar;
 	}
+
+	static async deleteCar(carId) {
+		await CarRepository.deleteCar(carId);
+	}
 }
 
 module.exports = CarServices;

@@ -21,6 +21,11 @@ class CarRepository {
 		console.log(updatedCar);
 		return updatedCar;
 	}
+
+	static async deleteCar(carId) {
+		const deletedCar = await Vehicles.findByIdAndDelete(carId);
+		return deletedCar;
+	}
 }
 
 module.exports = CarRepository;
