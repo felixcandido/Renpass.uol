@@ -15,6 +15,11 @@ class CarServices {
 		const car = await CarRepository.findCarById(carId);
 		return car;
 	}
+
+	static async updateCar(carId, reqBody) {
+		const updatedCar = await CarRepository.updateCar(carId, reqBody);
+		return updatedCar;
+	}
 }
 
 module.exports = CarServices;

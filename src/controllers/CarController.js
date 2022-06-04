@@ -27,6 +27,14 @@ class CarController{
 			res.status(400).send(error);
 		}
 	}
+	static async updateCar(req, res) {
+		try {
+			const result = await CarServices.updateCar(req.params.CarId, req.body);
+			res.status(200).send(result);
+		} catch(error) {
+			res.status(400).send(error);
+		}
+	}
 }
 
 module.exports = CarController;
