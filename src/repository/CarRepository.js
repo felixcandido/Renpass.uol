@@ -10,6 +10,11 @@ class CarRepository {
 		const cars = await Vehicles.find();
 		return cars;
 	}
+
+	static async findCarById(carId) {
+		const car = await Vehicles.findById(carId);
+		return car;
+	}
 }
 
 module.exports = CarRepository;
