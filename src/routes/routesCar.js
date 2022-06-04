@@ -6,7 +6,7 @@ module.exports = (server, routes, prefix = "/api/v1/car") => {
 		.post("/", vehiclesValidator, CarController.registeCar)
 		.get("/", CarController.findAllCars)
 		.get("/:CarId", CarController.findCarById)
-		.put("/:CarId", CarController.updateCar)
+		.patch("/:CarId", vehiclesValidator, CarController.updateCar)
 		.delete("/:CarId", CarController.deleteCar);
 		
 	server.use(prefix, routes);
