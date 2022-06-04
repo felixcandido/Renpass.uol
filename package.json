@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js"
+    "test": "jest",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore __tests__"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +14,13 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "faker": "^5.5.3",
     "mongoose": "^6.3.5"
   },
   "devDependencies": {
     "eslint": "^8.16.0",
-    "nodemon": "^2.0.16"
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3"
   }
 }
