@@ -20,7 +20,27 @@ const authUpdateVehicles = Joi.object({
 	passengersQtd: Joi.number().min(1)
 });
 
+const authCreatePerson = Joi.object({
+	name: Joi.string().required(),
+	cpf: Joi.string().required(),
+	birthDay: Joi.string().required(),
+	email: Joi.string().required().email(),
+	password: Joi.string().required().min(6),
+	canDrive: Joi.string().valid("yes", "no").required()
+});
+
+const authUpdatePerson = Joi.object({
+	name: Joi.string(),
+	cpf: Joi.string(),
+	birthDay: Joi.string(),
+	email: Joi.string().email(),
+	password: Joi.string().min(6),
+	canDrive: Joi.string().valid("yes", "no")
+});
+
 module.exports = {
 	authCreateVehicles,
-	authUpdateVehicles
+	authUpdateVehicles,
+	authCreatePerson,
+	authUpdatePerson
 };
