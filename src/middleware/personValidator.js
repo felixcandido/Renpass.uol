@@ -3,11 +3,13 @@ const { authCreatePerson, authUpdatePerson  } = require("../helpers/validationSc
 module.exports = async (req, res, next) => {
 	try {
 		if(req.method === "POST") {
-			await authCreatePerson.validateAsync(req.body);
+			const data = await authCreatePerson.validateAsync(req.body);
+			req.body = data;
 			next();
 		}
 		if(req.method === "PATCH") {
-			await authUpdatePerson.validateAsync(req.body);
+			const data = await authUpdatePerson.validateAsync(req.body);
+			req.body = data;
 			next();
 		}
 	} catch(error) {
