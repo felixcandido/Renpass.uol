@@ -1,4 +1,5 @@
 const NotFound = require("../errors/NotFound");
+const { toQueryVehicle } = require("../helpers/Vehicles");
 const CarRepository = require("../repository/CarRepository");
 
 class CarServices {
@@ -8,7 +9,11 @@ class CarServices {
 	}
 
 	static async findAllCars(query) {
-		const cars = await CarRepository.findCars(query);
+		const regQuery = toQueryVehicle(query);
+		const cars = await CarRepository.findCars(regQuery);
+		if(!cars.length) {
+			throw new NotFound("Vehicle");
+		}
 		return cars;
 	}
 

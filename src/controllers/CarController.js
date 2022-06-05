@@ -6,16 +6,16 @@ class CarController{
 			const result = await CarServices.create(req.body);
 			res.status(201).send(result);
 		} catch(error) {
-			res.status(400).send(error);
+			res.status(error.status || 400).send(error);
 		}
 	}
 
 	static async findAllCars(req, res) {
 		try {
-			const result = await CarServices.findAllCars();
+			const result = await CarServices.findAllCars(req.query);
 			res.status(200).send(result);
 		} catch(error) {
-			res.status(400).send(error);
+			res.status(error.status || 400).send(error);
 		}
 	}
 
@@ -29,8 +29,8 @@ class CarController{
 	}
 	static async updateCar(req, res) {
 		try {
-			const result = await CarServices.updateCar(req.params.CarId, req.body);
-			res.status(200).send(result);
+			await CarServices.updateCar(req.params.CarId, req.body);
+			res.status(204).end();
 		} catch(error) {
 			res.status(error.status || 400).send(error);
 		}
