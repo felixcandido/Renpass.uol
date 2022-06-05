@@ -24,7 +24,11 @@ class PersonServices {
 	}
 
 	static async updatePerson(personId, reqBody) {
-		const updatedPerson = await PersonRepository.updatePerson(personId, reqBody);
+		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
+		if(!isAdult(birthDay)) {
+			throw new BadRequest("Must be over 18 years old");
+		}
+		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody, birthDay});
 		return updatedPerson;
 	}
 

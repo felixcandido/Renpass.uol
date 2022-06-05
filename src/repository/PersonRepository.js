@@ -6,8 +6,8 @@ class PersonRepository {
 		return record;
 	}
 	
-	static async findPeople() {
-		const people = await Person.find();
+	static async findPeople(query) {
+		const people = await Person.find(query);
 		return people;
 	}
 

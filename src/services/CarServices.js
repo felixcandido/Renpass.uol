@@ -7,8 +7,8 @@ class CarServices {
 		return record;
 	}
 
-	static async findAllCars() {
-		const cars = await CarRepository.findCars();
+	static async findAllCars(query) {
+		const cars = await CarRepository.findCars(query);
 		return cars;
 	}
 
