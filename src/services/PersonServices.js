@@ -1,8 +1,15 @@
+const moment = require("moment");
+const BadRequest = require("../errors/BadRequest");
+const {isAdult} = require("../helpers/Person");
 const PersonRepository = require("../repository/PersonRepository");
 
 class PersonServices {
 	static async create(reqBody) {
-		const record = await PersonRepository.create(reqBody);
+		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
+		if(!isAdult(birthDay)) {
+			throw new BadRequest("Must be over 18 years old");
+		}
+		const record = await PersonRepository.create({...reqBody, birthDay});
 		return record;
 	}
 
