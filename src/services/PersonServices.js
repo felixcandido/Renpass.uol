@@ -1,13 +1,12 @@
-const moment = require("moment");
 const NotFound = require("../errors/NotFound");
 const PersonRepository = require("../repository/PersonRepository");
-const {isAdult, toQueryPerson} = require("../helpers/Person");
+const {isAdult, toQueryPerson, validationCpf} = require("../helpers/Person");
+const BadRequest = require("../errors/BadRequest");
 
 class PersonServices {
 	static async create(reqBody) {
-		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
-		isAdult(birthDay);
-		const record = await PersonRepository.create({...reqBody, birthDay});
+		isAdult(reqBody.birthDay);
+		const record = await PersonRepository.create(reqBody);
 		return record;
 	}
 
@@ -29,12 +28,12 @@ class PersonServices {
 	}
 
 	static async updatePerson(personId, reqBody) {
-		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
-		isAdult(birthDay);
-		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody, birthDay});
-		if(!updatedPerson) {
-			throw new NotFound(`ID: ${personId}`);
-		}
+		isAdult(reqBody.birthDay);
+		if(!validationCpf) throw new BadRequest("CPF must be valid");
+		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody});
+		
+		if(!updatedPerson) 	throw new NotFound(`ID: ${personId}`);
+		
 		return updatedPerson;
 	}
 
