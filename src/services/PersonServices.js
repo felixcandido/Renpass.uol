@@ -1,12 +1,11 @@
 const NotFound = require("../errors/NotFound");
 const PersonRepository = require("../repository/PersonRepository");
-const {isAdult, toQueryPerson, validationCpf} = require("../helpers/Person");
-const BadRequest = require("../errors/BadRequest");
+const {isAdult, toQueryPerson} = require("../helpers/Person");
+
 
 class PersonServices {
 	static async create(reqBody) {
 		isAdult(reqBody.birthDay);
-		if(!validationCpf(reqBody.cpf)) throw new BadRequest("CPF must be valid");
 		const record = await PersonRepository.create(reqBody);
 		return record;
 	}
@@ -30,7 +29,6 @@ class PersonServices {
 
 	static async updatePerson(personId, reqBody) {
 		isAdult(reqBody.birthDay);
-		if(!validationCpf(reqBody.cpf)) throw new BadRequest("CPF must be valid");
 		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody});
 		
 		if(!updatedPerson) 	throw new NotFound(`ID: ${personId}`);
