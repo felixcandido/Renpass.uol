@@ -6,9 +6,15 @@ class CarRepository {
 		return record;
 	}
 	
-	static async findCars(query) {
-		const cars = await Vehicles.find(query);
-		return cars;
+	static async findCars(RegQuery, query) {
+		const {page = 1, limit = 20} = query;
+		const cars = await Vehicles.find(RegQuery).limit(limit * 1).skip((page - 1) * limit);
+		const count = await Vehicles.countDocuments(RegQuery);
+		return {
+			cars,
+			totalPages: Math.ceil(count / limit),
+			currentPage: page
+		};
 	}
 
 	static async findCarById(carId) {

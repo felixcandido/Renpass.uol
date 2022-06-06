@@ -12,8 +12,8 @@ class PersonServices {
 
 	static async findAllPeople(query) {
 		const regQuery = toQueryPerson(query);
-		const people = await PersonRepository.findPeople(regQuery);
-		if(!people.length) {
+		const people = await PersonRepository.findPeople(regQuery, query);
+		if(!people.people.length) {
 			throw new NotFound("Person");
 		}
 		return people;
