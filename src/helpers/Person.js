@@ -25,9 +25,7 @@ class Person {
 	
 	static validationCpf(cpf) {
 		if(!cpf) return true;
-
-		cpf = cpf.replace(/[^\d]+/, "");
-		console.log(cpf);
+		cpf = cpf.replace(/[^\d]+/g, "");
 		let sum = 0;
 	
 		if(cpf === "01234567890") return false;

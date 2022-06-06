@@ -6,6 +6,7 @@ const BadRequest = require("../errors/BadRequest");
 class PersonServices {
 	static async create(reqBody) {
 		isAdult(reqBody.birthDay);
+		if(!validationCpf(reqBody.cpf)) throw new BadRequest("CPF must be valid");
 		const record = await PersonRepository.create(reqBody);
 		return record;
 	}
@@ -29,7 +30,7 @@ class PersonServices {
 
 	static async updatePerson(personId, reqBody) {
 		isAdult(reqBody.birthDay);
-		if(!validationCpf) throw new BadRequest("CPF must be valid");
+		if(!validationCpf(reqBody.cpf)) throw new BadRequest("CPF must be valid");
 		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody});
 		
 		if(!updatedPerson) 	throw new NotFound(`ID: ${personId}`);
