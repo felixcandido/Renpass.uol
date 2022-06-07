@@ -13,11 +13,10 @@ class Person {
 	}
 
 	static toQueryPerson(query) {
-		const {name, cpf, birthday, email, canDrive} = query;
+		const {name, cpf, email, canDrive} = query;
 		return {
 			name: new RegExp(name),
 			cpf: new RegExp(cpf),
-			birthday: new RegExp(birthday),
 			email: new RegExp(email),
 			canDrive: new RegExp(canDrive)
 		};

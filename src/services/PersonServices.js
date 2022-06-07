@@ -32,7 +32,6 @@ class PersonServices {
 		const updatedPerson = await PersonRepository.updatePerson(personId, {...reqBody});
 		
 		if(!updatedPerson) 	throw new NotFound(`ID: ${personId}`);
-		
 		return updatedPerson;
 	}
 

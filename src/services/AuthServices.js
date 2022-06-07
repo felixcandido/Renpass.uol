@@ -12,7 +12,7 @@ class AuthServices {
 
 		const person = await AuthRepository.findPerson(email);
 		if(!person) throw new NotFound(`email: ${email}`);
-		if(!await bcrypt.compare(password, person.password)) new BadRequest("Invalid Password");
+		if(!await bcrypt.compare(password, person.password)) throw new BadRequest("Invalid Password");
 
 		return jwt.sign({id: person.id}, process.env.SECRET, {expiresIn: 7200});		
 	}
