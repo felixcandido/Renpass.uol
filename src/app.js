@@ -1,9 +1,24 @@
 const express = require("express");
-const routes = require("./routes/routes");
+require("dotenv").config({
+	path: process.env.NODE_ENV === "test" ? ".env.test" : ".env"
+});
+require("./config/database");
+const router = require("./routes/");
 
-const app = express();
+class App  {
+	constructor() {
+		this.server = express();
+		this.middlewares();
+		this.routes();
+	}
 
-app.use(express.json());
-app.use(routes);
+	middlewares() {
+		this.server.use(express.json());
+	}
 
-module.exports = app;
+	routes() {
+		router(this.server);
+	}
+} 
+
+module.exports = new App().server;
