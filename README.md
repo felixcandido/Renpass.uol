@@ -57,6 +57,10 @@ No terminal inicie o servidor
 npm start
 ```
 
+Para iniciar o script de teste
+```bash
+npm run test
+```
 ## Person
 
 
