@@ -5,7 +5,7 @@ const accessoriesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-}, { _id: false, versionKey: false });
+}, { versionKey: false });
 
 const vehiclesSchema = new mongoose.Schema({
   model: {
