@@ -1,6 +1,6 @@
 const BadRequest = require('../errors/BadRequest');
 const { validationCpf } = require('../helpers/Person');
-const { authCreatePerson, authUpdatePerson } = require('../helpers/validationSchemas');
+const { authCreatePerson, authUpdatePerson } = require('../helpers/schemasPerson');
 
 module.exports = async (req, res, next) => {
   try {

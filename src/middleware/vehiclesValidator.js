@@ -1,4 +1,4 @@
-const { authCreateVehicles, authUpdateVehicles } = require('../helpers/validationSchemas');
+const { authCreateVehicles, authUpdateVehicles } = require('../helpers/schemaVehicles');
 
 module.exports = async (req, res, next) => {
   try {
