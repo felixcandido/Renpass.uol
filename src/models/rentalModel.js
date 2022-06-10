@@ -1,7 +1,18 @@
 const mongoose = require('mongoose');
 
 const adressSchema = new mongoose.Schema({
-  cep: {
+  zipCode: {
+    type: String,
+    required: true,
+  },
+  street: {
+    type: String,
+    required: true,
+  },
+  complement: {
+    type: String,
+  },
+  district: {
     type: String,
     required: true,
   },
@@ -9,8 +20,13 @@ const adressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  complement: {
+  city: {
     type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
   },
   isFilial: {
     type: Boolean,
