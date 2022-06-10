@@ -28,10 +28,10 @@ const rentalSchema = new mongoose.Schema({
     required: true,
   },
   activities: {
-    type: Date,
+    type: String,
     required: true,
   },
-  adress: {
+  address: {
     type: [adressSchema],
     required: true,
   },
