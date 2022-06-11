@@ -1,8 +1,10 @@
+const findAdress = require('../helpers/Address');
 const RentalRepository = require('../repository/RentalRepository');
 
 class RentalServices {
   static async create(reqBody) {
-    const rental = await RentalRepository.create(reqBody);
+    const data = await findAdress(reqBody);
+    const rental = await RentalRepository.create(data);
     return rental;
   }
 
