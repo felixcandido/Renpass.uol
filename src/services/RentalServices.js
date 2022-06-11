@@ -1,3 +1,4 @@
+const NotFound = require('../errors/NotFound');
 const findAdress = require('../helpers/Address');
 const RentalRepository = require('../repository/RentalRepository');
 
@@ -8,22 +9,26 @@ class RentalServices {
     return rental;
   }
 
-  static async findRental(reqBody) {
-    const rental = await RentalRepository.findAll(reqBody);
+  static async findRental(reqQuery) {
+    const rental = await RentalRepository.findAll(reqQuery);
+    if (!rental[0]) throw new NotFound(reqQuery);
     return rental;
   }
 
   static async findById(id) {
     const result = await RentalRepository.findById(id);
+    if (!result) throw new NotFound(`ID: ${id}`);
     return result;
   }
 
   static async updateRental(id, reqBody) {
-    await RentalRepository.updateRental(id, reqBody);
+    const updatedRental = await RentalRepository.updateRental(id, reqBody);
+    if (!updatedRental) throw new NotFound(`ID: ${id}`);
   }
 
   static async deleteRental(id) {
-    await RentalRepository.delete(id);
+    const deletedRental = await RentalRepository.delete(id);
+    if (!deletedRental) throw new NotFound(`ID: ${id}`);
   }
 }
 

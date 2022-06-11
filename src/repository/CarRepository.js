@@ -1,3 +1,4 @@
+const BadRequest = require('../errors/BadRequest');
 const Vehicles = require('../models/vehiclesModel');
 
 class CarRepository {
@@ -18,17 +19,23 @@ class CarRepository {
   }
 
   static async findCarById(carId) {
-    const car = await Vehicles.findById(carId);
+    const car = await Vehicles.findById(carId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return car;
   }
 
   static async updateCar(carId, reqBody) {
-    const updatedCar = await Vehicles.findByIdAndUpdate(carId, reqBody);
+    const updatedCar = await Vehicles.findByIdAndUpdate(carId, reqBody).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return updatedCar;
   }
 
   static async deleteCar(carId) {
-    const deletedCar = await Vehicles.findByIdAndDelete(carId);
+    const deletedCar = await Vehicles.findByIdAndDelete(carId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return deletedCar;
   }
 }
