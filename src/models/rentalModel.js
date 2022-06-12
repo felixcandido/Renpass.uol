@@ -42,6 +42,7 @@ const rentalSchema = new mongoose.Schema({
   cnpj: {
     type: String,
     required: true,
+    unique: true,
   },
   activities: {
     type: String,

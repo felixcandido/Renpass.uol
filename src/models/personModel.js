@@ -9,6 +9,7 @@ const personSchema = new mongoose.Schema({
   cpf: {
     type: String,
     required: true,
+    unique: true,
   },
   birthDay: {
     type: Date,
@@ -16,6 +17,7 @@ const personSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: [true, 'fdsfds'],
     required: true,
   },
   password: {

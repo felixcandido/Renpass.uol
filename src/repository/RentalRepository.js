@@ -6,8 +6,8 @@ class RentalRepository {
     return Rental.create(reqBody);
   }
 
-  static async findAll(reqQuery) {
-    return Rental.find(reqQuery);
+  static async findAll(regQuery) {
+    return Rental.find(regQuery);
   }
 
   static async findById(id) {

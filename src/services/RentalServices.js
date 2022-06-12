@@ -1,5 +1,6 @@
 const NotFound = require('../errors/NotFound');
 const findAdress = require('../helpers/Address');
+const { toQueryRental } = require('../helpers/Rental');
 const RentalRepository = require('../repository/RentalRepository');
 
 class RentalServices {
@@ -10,7 +11,8 @@ class RentalServices {
   }
 
   static async findRental(reqQuery) {
-    const rental = await RentalRepository.findAll(reqQuery);
+    const Regquery = toQueryRental(reqQuery);
+    const rental = await RentalRepository.findAll(Regquery);
     if (!rental[0]) throw new NotFound(reqQuery);
     return rental;
   }
