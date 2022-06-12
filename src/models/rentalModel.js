@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const adressSchema = new mongoose.Schema({
   zipCode: {
@@ -53,6 +54,7 @@ const rentalSchema = new mongoose.Schema({
     required: true,
   },
 });
+rentalSchema.plugin(mongoosePaginate);
 
 const Rental = mongoose.model('Rental', rentalSchema);
 

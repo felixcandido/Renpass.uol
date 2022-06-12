@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -31,6 +32,8 @@ const personSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+personSchema.plugin(mongoosePaginate);
 
 // eslint-disable-next-line func-names
 personSchema.pre('save', async function (next) {

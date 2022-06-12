@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const accessoriesSchema = new mongoose.Schema({
   description: {
@@ -37,6 +38,8 @@ const vehiclesSchema = new mongoose.Schema({
     type: Number,
   },
 });
+
+vehiclesSchema.plugin(mongoosePaginate);
 
 const Vehicles = mongoose.model('Vehicles', vehiclesSchema);
 

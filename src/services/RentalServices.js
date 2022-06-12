@@ -10,10 +10,10 @@ class RentalServices {
     return rental;
   }
 
-  static async findRental(reqQuery) {
-    const Regquery = toQueryRental(reqQuery);
-    const rental = await RentalRepository.findAll(Regquery);
-    if (!rental[0]) throw new NotFound(reqQuery);
+  static async findRental(query) {
+    const Regquery = toQueryRental(query);
+    const rental = await RentalRepository.findAll(Regquery, query);
+    if (!rental.docs.length) throw new NotFound(query);
     return rental;
   }
 

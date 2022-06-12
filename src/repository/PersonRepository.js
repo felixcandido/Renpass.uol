@@ -9,14 +9,7 @@ class PersonRepository {
 
   static async findPeople(RegQuery, query) {
     const { page = 1, limit = 20 } = query;
-    const people = await Person.find(RegQuery).limit(limit * 1).skip((page - 1) * limit);
-    const count = await Person.countDocuments(RegQuery);
-
-    return {
-      people,
-      totalPages: Math.ceil(count / limit),
-      currentPage: page,
-    };
+    return Person.paginate(RegQuery, { page, limit });
   }
 
   static async findPersonById(personId) {
