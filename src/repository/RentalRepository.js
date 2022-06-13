@@ -18,9 +18,11 @@ class RentalRepository {
   }
 
   static async updateRental(id, reqBody) {
-    return Rental.findByIdAndUpdate(id, reqBody).catch((error) => {
+    const x = await Rental.findByIdAndUpdate(id, reqBody).catch((error) => {
       if (error.path === '_id') throw new BadRequest('id format is invalid');
+      if (error.codeName === 'DuplicateKey') throw new BadRequest(`CNPJ: ${reqBody.cnpj} already in use`);
     });
+    return x;
   }
 
   static async delete(id) {

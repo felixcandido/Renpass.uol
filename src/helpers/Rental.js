@@ -1,3 +1,5 @@
+const BadRequest = require('../errors/BadRequest');
+
 class Rental {
   static toQueryRental(query) {
     const {
@@ -16,6 +18,16 @@ class Rental {
     };
 
     return Regex;
+  }
+
+  static isFilialValidation(reqBody) {
+    const { address } = reqBody;
+    let count = 0;
+
+    address.forEach((element) => {
+      if (!element.isFilial) count += 1;
+    });
+    if (count !== 1) throw new BadRequest('must have only one /isFilial: false/');
   }
 }
 
