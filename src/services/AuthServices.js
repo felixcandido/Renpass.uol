@@ -11,9 +11,9 @@ class AuthServices {
 
     const person = await AuthRepository.findPerson(email);
     if (!person) throw new NotFound(`email: ${email}`);
+    if (person.canDrive !== 'yes') throw new BadRequest('person does not have license to drive');
     if (!await bcrypt.compare(password, person.password)) throw new BadRequest('Invalid Password');
-
-    return jwt.sign({ id: person.id }, process.env.SECRET, { expiresIn: 7200 });
+    return jwt.sign({ id: person.id }, process.env.SECRET, { expiresIn: 86400 });
   }
 }
 
