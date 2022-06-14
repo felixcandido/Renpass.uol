@@ -1,0 +1,234 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Renpass.uol",
+        "description": "API to manage luxury car rental company",
+        "version": "1.0.0"
+
+    },
+    "externalDocs": {
+        "description": "GitHub",
+        "url": "https://github.com/felixcandido/Renpass.uol"
+    },
+    "servers": [{
+        "url": "http://localhost:3000/",
+        "description": "API"
+    }],
+    "components": {
+        "schemas": {
+            "Person": {
+                "type": "object",
+                "properties" : {
+                    "name": {
+                        "type": "string"
+                      },
+                      "cpf": {
+                        "type": "string",
+                        "minlength": 11,
+                        "maxlength": 14
+                      },
+                      "birthDay": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "canDrive": {
+                        "type": "string",
+                        "enum": ["yes", "no"]
+                      }
+                }
+            },
+            "Accessories": {
+                "description": {
+                    "type":"string"
+                }
+            },
+            "Vehicles" : {
+                "model": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "number"
+                  },
+                  "accessories": {
+                    "type": {"schema" : {"$ref": "#/components/schemas/Accessories"}
+                  }
+                },
+                  "passengersQtd": {
+                    "type": "number"
+                  }
+            }
+        }
+    },
+    "paths": {
+        "/api/v1/person" : {
+            "get": {
+                "summary": "Search all people",
+                "tags": ["Person"],
+                "parameters" : [
+                    {
+                        "name" : "name",
+                        "in": "query"
+                    },
+                    {
+                        "name": "cpf",
+                        "in": "query"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
+                        "name": "canDrive",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+              "summary": "register a new person",
+              "tags": ["Person"],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema":{
+                      "type": "object",
+                      "$ref": "#/components/schemas/Person"
+                    }
+                  }
+                }
+              },
+              "responses":{
+                "201": {
+                  "description": "created",
+                  "content": {
+                    "application/json": {
+                      "schema":{
+                        "type":"object",
+                        "$ref":"#/components/schemas/Person"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Bad Request"
+                }
+              }
+            }
+        },
+        "/api/v1/person/{id}" :{
+          "get":{
+            "summary":"Search person by id",
+            "tags": ["Person"],
+            "parameters" : [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200" : {
+                "description": "success",
+                "content": {
+                  "application/json":{
+                    "schema": {
+                      "type": "object",
+                      "$ref" :"#/components/schemas/Person"
+                    }
+                  }
+                }
+              },
+              "400":{
+                "description":"Bad Request"
+              },
+              "404": {
+                "description": "Not Found"
+              }
+            }
+          },
+          "patch": {
+            "summary": "update register of one person",
+            "tags": ["Person"],
+            "parameters" : [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema":{
+                    "type": "object",
+                    "$ref": "#/components/schemas/Person"
+                  }
+                }
+              }
+            },
+            
+            "responses": {
+              "204": {
+                "description": "success"
+              },
+              "400": {
+                "description":"Bad Request"
+              },
+              "404": {
+                "description":"Not Found"
+              }
+            }
+          },
+          "delete": {
+            "summary": "delete register of one person",
+            "tags": ["Person"],
+            "parameters" : [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "success"
+              },
+              "404": {
+                "description":"Not Found"
+              }
+            }
+          }   
+        }
+    }
+}
+ 

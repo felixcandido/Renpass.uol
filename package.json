@@ -21,7 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongoose": "^6.3.5",
-    "mongoose-paginate-v2": "^1.6.3"
+    "mongoose-paginate-v2": "^1.6.3",
+    "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
