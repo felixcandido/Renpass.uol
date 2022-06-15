@@ -1,36 +1,45 @@
-const Vehicles = require("../models/vehiclesModel");
+const BadRequest = require('../errors/BadRequest');
+const Vehicles = require('../models/vehiclesModel');
 
 class CarRepository {
-	static async create(reqBody) {
-		const record = await Vehicles.create(reqBody);
-		return record;
-	}
-	
-	static async findCars(RegQuery, query) {
-		const {page = 1, limit = 20} = query;
-		const cars = await Vehicles.find(RegQuery).limit(limit * 1).skip((page - 1) * limit);
-		const count = await Vehicles.countDocuments(RegQuery);
-		return {
-			cars,
-			totalPages: Math.ceil(count / limit),
-			currentPage: page
-		};
-	}
+  static async create(reqBody) {
+    const record = await Vehicles.create(reqBody);
+    return record;
+  }
 
-	static async findCarById(carId) {
-		const car = await Vehicles.findById(carId);
-		return car;
-	}
+  static async findCars(RegQuery, query) {
+    const { page = 1, limit = 20 } = query;
+    return Vehicles.paginate(RegQuery, { page, limit });
+  }
 
-	static async updateCar(carId, reqBody) {
-		const updatedCar = await Vehicles.findByIdAndUpdate(carId, reqBody);
-		return updatedCar;
-	}
+  static async findCarById(carId) {
+    const car = await Vehicles.findById(carId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return car;
+  }
 
-	static async deleteCar(carId) {
-		const deletedCar = await Vehicles.findByIdAndDelete(carId);
-		return deletedCar;
-	}
+  static async updateCar(carId, reqBody) {
+    const updatedCar = await Vehicles.findByIdAndUpdate(carId, reqBody).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return updatedCar;
+  }
+
+  static async updateAccessorie(id, reqBody) {
+    const accessorie = await Vehicles.findOneAndUpdate(
+      { 'accessories._id': id },
+      { $set: { 'accessories.$.description': reqBody.description } },
+    );
+    return accessorie;
+  }
+
+  static async deleteCar(carId) {
+    const deletedCar = await Vehicles.findByIdAndDelete(carId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return deletedCar;
+  }
 }
 
 module.exports = CarRepository;

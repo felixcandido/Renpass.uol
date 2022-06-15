@@ -1,37 +1,37 @@
-const Person = require("../models/personModel");
+const BadRequest = require('../errors/BadRequest');
+const Person = require('../models/personModel');
 
 class PersonRepository {
-	static async create(reqBody) {
-		const record = await Person.create(reqBody);
-		return record;
-	}
-	
-	static async findPeople(RegQuery, query) {
-		const {page = 1, limit = 20} = query;
-		const people = await Person.find(RegQuery).limit(limit * 1).skip((page - 1) * limit);
-		const count = await Person.countDocuments(RegQuery);
-		
-		return {
-			people,
-			totalPages: Math.ceil(count / limit),
-			currentPage: page
-		};
-	}
+  static async create(reqBody) {
+    const record = await Person.create(reqBody);
+    return record;
+  }
 
-	static async findPersonById(personId) {
-		const person = await Person.findById(personId);
-		return person;
-	}
+  static async findPeople(RegQuery, query) {
+    const { page = 1, limit = 20 } = query;
+    return Person.paginate(RegQuery, { page, limit });
+  }
 
-	static async updatePerson(personId, reqBody) {
-		const updatedPerson = await Person.findByIdAndUpdate(personId, reqBody);
-		return updatedPerson;
-	}
+  static async findPersonById(personId) {
+    const person = await Person.findById(personId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return person;
+  }
 
-	static async deletePerson(personId) {
-		const deletedPerson = await Person.findByIdAndDelete(personId);
-		return deletedPerson;
-	}
+  static async updatePerson(personId, reqBody) {
+    const updatedPerson = await Person.findByIdAndUpdate(personId, reqBody).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return updatedPerson;
+  }
+
+  static async deletePerson(personId) {
+    const deletedPerson = await Person.findByIdAndDelete(personId).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+    return deletedPerson;
+  }
 }
 
 module.exports = PersonRepository;

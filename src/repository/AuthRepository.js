@@ -1,9 +1,10 @@
-const Person = require("../models/personModel");
+const Person = require('../models/personModel');
 
 class AuthRepository {
-	static async findPerson(email) {
-		return await Person.findOne({email}).select("+password");
-	}
+  static async findPerson(email) {
+    const user = await Person.findOne({ email }).select('+password');
+    return user;
+  }
 }
 
 module.exports = AuthRepository;
