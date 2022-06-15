@@ -37,6 +37,15 @@ class CarController {
     }
   }
 
+  static async updateAccessories(req, res) {
+    try {
+      await CarServices.updateAccessories(req.params.id, req.body);
+      res.status(204).end();
+    } catch (error) {
+      res.status(error.status || 400);
+    }
+  }
+
   static async deleteCar(req, res) {
     try {
       await CarServices.deleteCar(req.params.CarId);

@@ -26,6 +26,14 @@ class CarRepository {
     return updatedCar;
   }
 
+  static async updateAccessorie(id, reqBody) {
+    const accessorie = await Vehicles.findOneAndUpdate(
+      { 'accessories._id': id },
+      { $set: { 'accessories.$.description': reqBody.description } },
+    );
+    return accessorie;
+  }
+
   static async deleteCar(carId) {
     const deletedCar = await Vehicles.findByIdAndDelete(carId).catch((error) => {
       if (error.path === '_id') throw new BadRequest('id format is invalid');

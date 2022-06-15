@@ -3,9 +3,12 @@ const BadRequest = require('../errors/BadRequest');
 
 class Person {
   static isAdult(birthday) {
+    if (!birthday) return true;
+
     const dateNow = new Date().toLocaleDateString();
     const formatedDateNow = moment(dateNow, 'DD/MM/YYYY').format('YYYY/MM/DD');
     const age = moment(formatedDateNow).diff(birthday, 'years', true);
+
     if (Math.trunc(age) < 18) {
       throw new BadRequest('Must be over 18 years old');
     }
@@ -26,6 +29,7 @@ class Person {
 
   static validationCpf(cpfReq) {
     if (!cpfReq) return true;
+
     const cpf = cpfReq.replace(/[^\d]+/g, '');
     let sum = 0;
 

@@ -33,6 +33,12 @@ class CarServices {
     return updatedCar;
   }
 
+  static async updateAccessories(id, reqBody) {
+    const updatedAccessorie = await CarRepository.updateAccessorie(id, reqBody);
+    if (!updatedAccessorie) throw new NotFound(`ID: ${id}`);
+    return updatedAccessorie;
+  }
+
   static async deleteCar(carId) {
     const deletedCar = await CarRepository.deleteCar(carId);
     if (!deletedCar) {
