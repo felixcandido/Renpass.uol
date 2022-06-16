@@ -11,8 +11,12 @@
   },
   "servers": [
     {
+      "url": "https://renpass-uol.herokuapp.com/",
+      "description": "API - Heroku"
+    },
+    {
       "url": "http://localhost:3000/",
-      "description": "API"
+      "description": "API - localhost"
     }
   ],
   "components": {
