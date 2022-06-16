@@ -325,5 +325,4 @@ Para fazer login deve-se informar o email e senha cadastrado cadastrado
   "prevPage": null,
   "nextPage": null
 }
-}
 ```
