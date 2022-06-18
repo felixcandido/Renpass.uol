@@ -1,10 +1,10 @@
 const Fleet = require('../models/fleetModel');
 
 class FleetRepository {
-  static async create(reqBody) {
+  async create(reqBody) {
     const fleet = await Fleet.create(reqBody);
     return fleet;
   }
 }
 
-module.exports = FleetRepository;
+module.exports = new FleetRepository();

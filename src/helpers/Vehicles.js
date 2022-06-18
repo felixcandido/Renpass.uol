@@ -1,5 +1,5 @@
 class Vehicles {
-  static toQueryVehicle(query) {
+  toQueryVehicle(query) {
     const {
       model, type, brand, year, color, accessories,
     } = query;
@@ -18,4 +18,4 @@ class Vehicles {
   }
 }
 
-module.exports = Vehicles;
+module.exports = new Vehicles();

@@ -1,7 +1,7 @@
 const RentalServices = require('../services/RentalServices');
 
 class RentalController {
-  static async registeRental(req, res) {
+  async registeRental(req, res) {
     try {
       const rental = await RentalServices.create(req.body);
       res.status(201).send(rental);
@@ -10,7 +10,7 @@ class RentalController {
     }
   }
 
-  static async findRental(req, res) {
+  async findRental(req, res) {
     try {
       const result = await RentalServices.findRental(req.query);
       res.status(200).send(result);
@@ -19,7 +19,7 @@ class RentalController {
     }
   }
 
-  static async findRentalbyId(req, res) {
+  async findRentalbyId(req, res) {
     try {
       const result = await RentalServices.findById(req.params.id);
       res.status(200).send(result);
@@ -28,7 +28,7 @@ class RentalController {
     }
   }
 
-  static async updateRental(req, res) {
+  async updateRental(req, res) {
     try {
       await RentalServices.updateRental(req.params.id, req.body);
       res.status(204).end();
@@ -37,7 +37,7 @@ class RentalController {
     }
   }
 
-  static async deleteRental(req, res) {
+  async deleteRental(req, res) {
     try {
       await RentalServices.deleteRental(req.params.id);
       res.status(204).end();
@@ -47,4 +47,4 @@ class RentalController {
   }
 }
 
-module.exports = RentalController;
+module.exports = new RentalController();

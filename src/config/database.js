@@ -6,7 +6,6 @@ class Database {
     this.connect();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   connect() {
     return mongoose.connect(process.env.MONGO_URL || `mongodb://${process.env.DB_HOST}/${process.env.DB_COLLECTION}`);
   }

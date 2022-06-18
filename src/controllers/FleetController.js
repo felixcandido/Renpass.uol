@@ -1,7 +1,7 @@
 const FleetServices = require('../services/FleetServices');
 
 class FleetController {
-  static async createFleet(req, res) {
+  async createFleet(req, res) {
     try {
       const fleet = await FleetServices.create(req.body);
       res.status(201).send(fleet);
@@ -11,4 +11,4 @@ class FleetController {
   }
 }
 
-module.exports = FleetController;
+module.exports = new FleetController();

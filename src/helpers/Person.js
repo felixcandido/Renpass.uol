@@ -2,7 +2,7 @@ const moment = require('moment');
 const BadRequest = require('../errors/BadRequest');
 
 class Person {
-  static isAdult(birthday) {
+  isAdult(birthday) {
     if (!birthday) return true;
 
     const dateNow = new Date().toLocaleDateString();
@@ -15,7 +15,7 @@ class Person {
     return true;
   }
 
-  static toQueryPerson(query) {
+  toQueryPerson(query) {
     const {
       name, cpf, email, canDrive,
     } = query;
@@ -27,7 +27,7 @@ class Person {
     };
   }
 
-  static validationCpf(cpfReq) {
+  validationCpf(cpfReq) {
     if (!cpfReq) return true;
 
     const cpf = cpfReq.replace(/[^\d]+/g, '');
@@ -61,4 +61,4 @@ class Person {
   }
 }
 
-module.exports = Person;
+module.exports = new Person();

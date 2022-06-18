@@ -6,7 +6,7 @@ const BadRequest = require('../errors/BadRequest');
 require('dotenv/config');
 
 class AuthServices {
-  static async authenticate(reqBody) {
+  async authenticate(reqBody) {
     const { email, password } = reqBody;
 
     const person = await AuthRepository.findPerson(email);
@@ -17,4 +17,4 @@ class AuthServices {
   }
 }
 
-module.exports = AuthServices;
+module.exports = new AuthServices();

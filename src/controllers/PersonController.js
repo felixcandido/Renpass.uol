@@ -1,7 +1,7 @@
 const PersonServices = require('../services/PersonServices');
 
 class PersonController {
-  static async registePerson(req, res) {
+  async registePerson(req, res) {
     try {
       const result = await PersonServices.create(req.body);
       res.status(201).send(result);
@@ -10,7 +10,7 @@ class PersonController {
     }
   }
 
-  static async findAllPeople(req, res) {
+  async findAllPeople(req, res) {
     try {
       const result = await PersonServices.findAllPeople(req.query);
       res.status(200).send(result);
@@ -19,7 +19,7 @@ class PersonController {
     }
   }
 
-  static async findPersonById(req, res) {
+  async findPersonById(req, res) {
     try {
       const result = await PersonServices.findPersonById(req.params.personId);
       res.status(200).send(result);
@@ -28,7 +28,7 @@ class PersonController {
     }
   }
 
-  static async updatePerson(req, res) {
+  async updatePerson(req, res) {
     try {
       await PersonServices.updatePerson(req.params.personId, req.body);
       res.status(204).end();
@@ -37,7 +37,7 @@ class PersonController {
     }
   }
 
-  static async deletePerson(req, res) {
+  async deletePerson(req, res) {
     try {
       await PersonServices.deletePerson(req.params.personId);
       res.status(204).end();
@@ -47,4 +47,4 @@ class PersonController {
   }
 }
 
-module.exports = PersonController;
+module.exports = new PersonController();

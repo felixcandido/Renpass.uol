@@ -3,13 +3,13 @@ const PersonRepository = require('../repository/PersonRepository');
 const { isAdult, toQueryPerson } = require('../helpers/Person');
 
 class PersonServices {
-  static async create(reqBody) {
+  async create(reqBody) {
     isAdult(reqBody.birthDay);
     const record = await PersonRepository.create(reqBody);
     return record;
   }
 
-  static async findAllPeople(query) {
+  async findAllPeople(query) {
     const regQuery = toQueryPerson(query);
     const people = await PersonRepository.findPeople(regQuery, query);
     if (!people.docs.length) {
@@ -18,7 +18,7 @@ class PersonServices {
     return people;
   }
 
-  static async findPersonById(personId) {
+  async findPersonById(personId) {
     const person = await PersonRepository.findPersonById(personId);
     if (!person) {
       throw new NotFound(`ID: ${personId}`);
@@ -26,14 +26,14 @@ class PersonServices {
     return person;
   }
 
-  static async updatePerson(personId, reqBody) {
+  async updatePerson(personId, reqBody) {
     isAdult(reqBody.birthDay);
     const updatedPerson = await PersonRepository.updatePerson(personId, { ...reqBody });
     if (!updatedPerson) throw new NotFound(`ID: ${personId}`);
     return updatedPerson;
   }
 
-  static async deletePerson(personId) {
+  async deletePerson(personId) {
     const deletedPerson = await PersonRepository.deletePerson(personId);
     if (!deletedPerson) {
       throw new NotFound(`ID: ${personId}`);
@@ -41,4 +41,4 @@ class PersonServices {
   }
 }
 
-module.exports = PersonServices;
+module.exports = new PersonServices();

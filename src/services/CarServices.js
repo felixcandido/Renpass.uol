@@ -3,12 +3,12 @@ const { toQueryVehicle } = require('../helpers/Vehicles');
 const CarRepository = require('../repository/CarRepository');
 
 class CarServices {
-  static async create(reqBody) {
+  async create(reqBody) {
     const record = await CarRepository.create(reqBody);
     return record;
   }
 
-  static async findAllCars(query) {
+  async findAllCars(query) {
     const regQuery = toQueryVehicle(query);
     const cars = await CarRepository.findCars(regQuery, query);
     if (!cars.docs.length) {
@@ -17,7 +17,7 @@ class CarServices {
     return cars;
   }
 
-  static async findCarById(carId) {
+  async findCarById(carId) {
     const car = await CarRepository.findCarById(carId);
     if (!car) {
       throw new NotFound(`ID: ${carId}`);
@@ -25,7 +25,7 @@ class CarServices {
     return car;
   }
 
-  static async updateCar(carId, reqBody) {
+  async updateCar(carId, reqBody) {
     const updatedCar = await CarRepository.updateCar(carId, reqBody);
     if (!updatedCar) {
       throw new NotFound(`ID: ${carId}`);
@@ -33,13 +33,13 @@ class CarServices {
     return updatedCar;
   }
 
-  static async updateAccessories(id, reqBody) {
+  async updateAccessories(id, reqBody) {
     const updatedAccessorie = await CarRepository.updateAccessorie(id, reqBody);
     if (!updatedAccessorie) throw new NotFound(`ID: ${id}`);
     return updatedAccessorie;
   }
 
-  static async deleteCar(carId) {
+  async deleteCar(carId) {
     const deletedCar = await CarRepository.deleteCar(carId);
     if (!deletedCar) {
       throw new NotFound(`ID: ${carId}`);
@@ -47,4 +47,4 @@ class CarServices {
   }
 }
 
-module.exports = CarServices;
+module.exports = new CarServices();

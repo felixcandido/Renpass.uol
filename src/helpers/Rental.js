@@ -1,7 +1,7 @@
 const BadRequest = require('../errors/BadRequest');
 
 class Rental {
-  static toQueryRental(query) {
+  toQueryRental(query) {
     const {
       name, cnpj, activities, zipCode, street, complement, district, city, state,
     } = query;
@@ -20,7 +20,7 @@ class Rental {
     return Regex;
   }
 
-  static isFilialValidation(reqBody) {
+  isFilialValidation(reqBody) {
     const { address } = reqBody;
     let count = 0;
 
@@ -31,4 +31,4 @@ class Rental {
   }
 }
 
-module.exports = Rental;
+module.exports = new Rental();
