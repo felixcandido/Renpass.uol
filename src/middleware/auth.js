@@ -15,6 +15,11 @@ module.exports = async (req, res, next) => {
       next();
     });
   } catch (error) {
-    res.status(error.status || 400).send(error);
+    res.status(error.status || 400).send({
+      errors: error.details.map((detail) => ({
+        name: detail.path.join(''),
+        description: detail.message,
+      })),
+    });
   }
 };

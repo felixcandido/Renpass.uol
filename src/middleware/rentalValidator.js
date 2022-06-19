@@ -4,16 +4,21 @@ const { authCreateRental, authUpdateRental } = require('../helpers/schemaRental'
 module.exports = async (req, res, next) => {
   try {
     if (req.method === 'POST') {
-      const data = await authCreateRental.validateAsync(req.body);
+      const data = await authCreateRental.validateAsync(req.body, { abortEarly: false });
       req.body = data;
       isFilialValidation(req.body);
     }
     if (req.method === 'PATCH') {
-      const data = await authUpdateRental.validateAsync(req.body);
+      const data = await authUpdateRental.validateAsync(req.body, { abortEarly: false });
       req.body = data;
     }
     next();
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({
+      errors: error.details.map((detail) => ({
+        name: detail.path.join(''),
+        description: detail.message,
+      })),
+    });
   }
 };

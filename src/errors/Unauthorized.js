@@ -1,11 +1,11 @@
 class Unauthorized extends Error {
-  constructor(item) {
+  constructor(message) {
     super();
     this.status = 401;
-    this.name = 'Unauthorized';
-    this.message = [
+    this.details = [
       {
-        details: [{ message: `${item}` }],
+        path: ['Unauthorized'],
+        message: `${message}`,
       },
     ];
   }

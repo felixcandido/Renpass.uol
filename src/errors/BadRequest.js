@@ -2,10 +2,10 @@ class BadRequest extends Error {
   constructor(message) {
     super();
     this.status = 400;
-    this.name = 'Bad Request';
-    this.message = [
+    this.details = [
       {
-        details: [{ message: `${message}` }],
+        path: ['Bad Request'],
+        message: `${message}`,
       },
     ];
   }

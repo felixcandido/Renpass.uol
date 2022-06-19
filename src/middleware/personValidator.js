@@ -5,16 +5,21 @@ const { authCreatePerson, authUpdatePerson } = require('../helpers/schemasPerson
 module.exports = async (req, res, next) => {
   try {
     if (req.method === 'POST') {
-      const data = await authCreatePerson.validateAsync(req.body);
+      const data = await authCreatePerson.validateAsync(req.body, { abortEarly: false });
       req.body = data;
     }
     if (req.method === 'PATCH') {
-      const data = await authUpdatePerson.validateAsync(req.body);
+      const data = await authUpdatePerson.validateAsync(req.body, { abortEarly: false });
       req.body = data;
     }
-    if (!validationCpf(req.body.cpf)) { throw new BadRequest('CPF must be valid'); }
+    if (!validationCpf(req.body.cpf)) { throw new BadRequest(`Invalid CPF ${req.body.cpf}`); }
     next();
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({
+      errors: error.details.map((detail) => ({
+        name: detail.path.join(''),
+        description: detail.message,
+      })),
+    });
   }
 };
