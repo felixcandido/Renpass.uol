@@ -13,7 +13,7 @@ const personSchema = new mongoose.Schema({
     unique: true,
   },
   birthDay: {
-    type: Date,
+    type: String,
     required: true,
   },
   email: {

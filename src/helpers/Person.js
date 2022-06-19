@@ -7,7 +7,9 @@ class Person {
 
     const dateNow = new Date().toLocaleDateString();
     const formatedDateNow = moment(dateNow, 'DD/MM/YYYY').format('YYYY/MM/DD');
-    const age = moment(formatedDateNow).diff(birthday, 'years', true);
+
+    const formatedBirthday = moment(birthday, 'DD/MM/YYYY').format('YYYY/MM/DD');
+    const age = moment(formatedDateNow).diff(formatedBirthday, 'years', true);
 
     if (Math.trunc(age) < 18) {
       throw new BadRequest('Must be over 18 years old');
