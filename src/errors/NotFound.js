@@ -1,11 +1,11 @@
 class NotFound extends Error {
-  constructor(item) {
+  constructor(message) {
     super();
     this.status = 404;
-    this.name = 'Not Found';
-    this.message = [
+    this.details = [
       {
-        details: [{ message: `${item} Not Found` }],
+        path: ['Not Found'],
+        message: `${message} Not Found`,
       },
     ];
   }

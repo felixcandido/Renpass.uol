@@ -1,3 +1,4 @@
+const formatError = require('../helpers/formatError');
 const FleetServices = require('../services/FleetServices');
 
 class FleetController {
@@ -6,7 +7,7 @@ class FleetController {
       const fleet = await FleetServices.create(req.body);
       res.status(201).send(fleet);
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(formatError(error));
     }
   }
 
@@ -15,7 +16,7 @@ class FleetController {
       const fleet = await FleetServices.findFleet();
       res.status(200).send(fleet);
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(formatError(error));
     }
   }
 
@@ -24,7 +25,7 @@ class FleetController {
       const fleet = await FleetServices.findFleetById(req.params.fleetId);
       res.status(200).send(fleet);
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(formatError(error));
     }
   }
 
@@ -33,7 +34,7 @@ class FleetController {
       await FleetServices.updateFleet(req.params.fleetId, req.body);
       res.status(204).end();
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(formatError(error));
     }
   }
 
@@ -42,7 +43,7 @@ class FleetController {
       await FleetServices.deleteFleet(req.params.fleetId);
       res.status(204).end();
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(formatError(error));
     }
   }
 }

@@ -1,9 +1,13 @@
 const BadRequest = require('../errors/BadRequest');
+const Conflict = require('../errors/Conflict');
 const Person = require('../models/personModel');
 
 class PersonRepository {
   async create(reqBody) {
-    const record = await Person.create(reqBody);
+    const record = await Person.create(reqBody).catch((error) => {
+      if (Object.keys(error.keyPattern)[0] === 'email') throw new Conflict(`email ${reqBody.email} is already in use`);
+      if (Object.keys(error.keyPattern)[0] === 'cpf') throw new Conflict(`cpf ${reqBody.cpf} is already in use`);
+    });
     return record;
   }
 
@@ -22,6 +26,8 @@ class PersonRepository {
   async updatePerson(personId, reqBody) {
     const updatedPerson = await Person.findByIdAndUpdate(personId, reqBody).catch((error) => {
       if (error.path === '_id') throw new BadRequest('id format is invalid');
+      if (Object.keys(error.keyPattern)[0] === 'email') throw new Conflict(`email ${reqBody.email} is already in use`);
+      if (Object.keys(error.keyPattern)[0] === 'cpf') throw new Conflict(`cpf ${reqBody.cpf} is already in use`);
     });
     return updatedPerson;
   }

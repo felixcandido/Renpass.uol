@@ -1,3 +1,4 @@
+const formatError = require('../helpers/formatError');
 const { authCreateVehicles, authUpdateVehicles } = require('../helpers/schemaVehicles');
 
 module.exports = async (req, res, next) => {
@@ -13,11 +14,6 @@ module.exports = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    res.status(400).send({
-      errors: error.details.map((detail) => ({
-        name: detail.path.join(''),
-        description: detail.message,
-      })),
-    });
+    res.status(400).send(formatError(error));
   }
 };

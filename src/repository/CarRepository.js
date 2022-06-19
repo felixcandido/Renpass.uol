@@ -30,7 +30,10 @@ class CarRepository {
     const accessorie = await Vehicles.findOneAndUpdate(
       { 'accessories._id': id },
       { $set: { 'accessories.$.description': reqBody.description } },
-    );
+    ).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
+
     return accessorie;
   }
 

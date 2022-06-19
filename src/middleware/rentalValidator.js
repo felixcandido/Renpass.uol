@@ -1,3 +1,4 @@
+const formatError = require('../helpers/formatError');
 const { isFilialValidation } = require('../helpers/Rental');
 const { authCreateRental, authUpdateRental } = require('../helpers/schemaRental');
 
@@ -14,11 +15,6 @@ module.exports = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    res.status(400).send({
-      errors: error.details.map((detail) => ({
-        name: detail.path.join(''),
-        description: detail.message,
-      })),
-    });
+    res.status(400).send(formatError(error));
   }
 };

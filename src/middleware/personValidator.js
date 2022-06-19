@@ -1,4 +1,5 @@
 const BadRequest = require('../errors/BadRequest');
+const formatError = require('../helpers/formatError');
 const { validationCpf } = require('../helpers/Person');
 const { authCreatePerson, authUpdatePerson } = require('../helpers/schemasPerson');
 
@@ -15,11 +16,6 @@ module.exports = async (req, res, next) => {
     if (!validationCpf(req.body.cpf)) { throw new BadRequest(`Invalid CPF ${req.body.cpf}`); }
     next();
   } catch (error) {
-    res.status(400).send({
-      errors: error.details.map((detail) => ({
-        name: detail.path.join(''),
-        description: detail.message,
-      })),
-    });
+    res.status(400).send(formatError(error));
   }
 };
