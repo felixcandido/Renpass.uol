@@ -4,10 +4,10 @@ const FleetServices = require('../services/FleetServices');
 class FleetController {
   async createFleet(req, res) {
     try {
-      const fleet = await FleetServices.create(req.body);
+      const fleet = await FleetServices.create(req.body, req.params.rentalId);
       res.status(201).send(fleet);
     } catch (error) {
-      res.status(400).send(formatError(error));
+      res.status(error.status || 400).send(formatError(error) || error);
     }
   }
 

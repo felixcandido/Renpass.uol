@@ -12,7 +12,7 @@ module.exports = (server) => {
     routesPerson(server, new Router());
     routeAuth(server, new Router());
     routesRental(server, new Router());
-    routesFleet(server, new Router());
+    routesFleet(server, new Router({ mergeParams: true }));
     routeSwagger(server, new Router());
     next();
   });

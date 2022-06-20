@@ -1,8 +1,8 @@
 const FleetRepository = require('../repository/FleetRepository');
 
 class FleetServices {
-  async create(reqBody) {
-    const fleet = await FleetRepository.create(reqBody);
+  async create(reqBody, rentalId) {
+    const fleet = await FleetRepository.create({ ...reqBody, id_rental: rentalId });
     return fleet;
   }
 
