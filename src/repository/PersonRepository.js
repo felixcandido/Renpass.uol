@@ -15,6 +15,7 @@ class PersonRepository {
     const { page = 1, limit = 100 } = query;
 
     const customLabels = {
+      docs: 'people',
       totalDocs: 'total',
       page: 'offset',
       nextPage: false,

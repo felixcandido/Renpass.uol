@@ -12,6 +12,7 @@ class RentalRepository {
   async findAll(regQuery, query) {
     const { page = 1, limit = 100 } = query;
     const customLabels = {
+      docs: 'rentals',
       totalDocs: 'total',
       page: 'offset',
       nextPage: false,

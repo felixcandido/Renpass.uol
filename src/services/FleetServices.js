@@ -21,7 +21,7 @@ class FleetServices {
   async findFleet(rentalId, query) {
     const regQuery = toQueryFleet(query);
     const fleet = await FleetRepository.findFleet(rentalId, regQuery, query);
-    if (!fleet.docs.length) {
+    if (!fleet.fleet.length) {
       throw new NotFound('Fleet');
     }
     return fleet;

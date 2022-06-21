@@ -11,7 +11,7 @@ class CarServices {
   async findAllCars(query) {
     const regQuery = toQueryVehicle(query);
     const cars = await CarRepository.findCars(regQuery, query);
-    if (!cars.docs.length) {
+    if (!cars.vehicles.length) {
       throw new NotFound('Vehicle');
     }
     return cars;

@@ -11,6 +11,7 @@ class CarRepository {
     const { page = 1, limit = 100 } = query;
 
     const customLabels = {
+      docs: 'vehicles',
       totalDocs: 'total',
       page: 'offset',
       nextPage: false,

@@ -20,6 +20,7 @@ class FleetRepository {
     const { page = 1, limit = 100 } = query;
 
     const customLabels = {
+      docs: 'fleet',
       totalDocs: 'total',
       page: 'offset',
       nextPage: false,
