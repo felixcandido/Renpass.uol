@@ -1,7 +1,18 @@
+const NotFound = require('../errors/NotFound');
+const CarRepository = require('../repository/CarRepository');
 const FleetRepository = require('../repository/FleetRepository');
+const RentalRepository = require('../repository/RentalRepository');
 
 class FleetServices {
   async create(reqBody, rentalId) {
+    const rental = await RentalRepository.findById(rentalId);
+    if (!rental) {
+      throw new NotFound(`ID: ${rentalId}`);
+    }
+    const car = await CarRepository.findCarById(reqBody.id_car);
+    if (!car) {
+      throw new NotFound(`ID: ${reqBody.id_car}`);
+    }
     const fleet = await FleetRepository.create({ ...reqBody, id_rental: rentalId });
     return fleet;
   }
