@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
@@ -16,8 +17,31 @@ class FleetRepository {
     return fleet;
   }
 
-  async findFleet() {
-    const fleet = await Fleet.find();
+  async findFleet(id_rental, regQuery, query) {
+    const { page = 1, limit = 100 } = query;
+
+    const customLabels = {
+      totalDocs: 'total',
+      page: 'offset',
+      nextPage: false,
+      prevPage: false,
+      totalPages: 'offsets',
+      pagingCounter: false,
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false,
+    };
+
+    const options = {
+      page,
+      limit,
+      customLabels,
+    };
+    const fleet = await Fleet.paginate({ id_rental, ...regQuery }, options).catch((error) => {
+      if (error.kind === 'ObjectId') {
+        throw new BadRequest('id format is invalid');
+      }
+    });
     return fleet;
   }
 

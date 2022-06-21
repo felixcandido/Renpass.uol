@@ -6,15 +6,15 @@ class Rental {
       name, cnpj, activities, zipCode, street, complement, district, city, state,
     } = query;
     const Regex = {
-      name: new RegExp(name),
+      name: new RegExp(name, 'i'),
       cnpj: new RegExp(cnpj),
-      activities: new RegExp(activities),
+      activities: new RegExp(activities, 'i'),
       'address.zipCode': new RegExp(zipCode),
-      'address.street': new RegExp(street),
-      'address.complement': new RegExp(complement),
-      'address.district': new RegExp(district),
-      'address.city': new RegExp(city),
-      'address.state': new RegExp(state),
+      'address.street': new RegExp(street, 'i'),
+      'address.complement': new RegExp(complement, 'i'),
+      'address.district': new RegExp(district, 'i'),
+      'address.city': new RegExp(city, 'i'),
+      'address.state': new RegExp(state, 'i'),
     };
 
     return Regex;

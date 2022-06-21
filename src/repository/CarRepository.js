@@ -8,8 +8,26 @@ class CarRepository {
   }
 
   async findCars(RegQuery, query) {
-    const { page = 1, limit = 20 } = query;
-    return Vehicles.paginate(RegQuery, { page, limit });
+    const { page = 1, limit = 100 } = query;
+
+    const customLabels = {
+      totalDocs: 'total',
+      page: 'offset',
+      nextPage: false,
+      prevPage: false,
+      totalPages: 'offsets',
+      pagingCounter: false,
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false,
+    };
+
+    const options = {
+      page,
+      limit,
+      customLabels,
+    };
+    return Vehicles.paginate(RegQuery, options);
   }
 
   async findCarById(carId) {

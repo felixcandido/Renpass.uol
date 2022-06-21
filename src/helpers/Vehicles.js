@@ -4,11 +4,11 @@ class Vehicles {
       model, type, brand, year, color, accessories,
     } = query;
     const Regex = {
-      model: new RegExp(model),
-      type: new RegExp(type),
-      brand: new RegExp(brand),
-      color: new RegExp(color),
-      'accessories.description': new RegExp(accessories),
+      model: new RegExp(model, 'i'),
+      type: new RegExp(type, 'i'),
+      brand: new RegExp(brand, 'i'),
+      color: new RegExp(color, 'i'),
+      'accessories.description': new RegExp(accessories, 'i'),
     };
 
     if (year) {

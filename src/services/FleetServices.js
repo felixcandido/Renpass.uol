@@ -1,4 +1,5 @@
 const NotFound = require('../errors/NotFound');
+const { toQueryFleet } = require('../helpers/Fleet');
 const CarRepository = require('../repository/CarRepository');
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
@@ -17,23 +18,36 @@ class FleetServices {
     return fleet;
   }
 
-  async findFleet() {
-    const fleet = await FleetRepository.findFleet();
+  async findFleet(rentalId, query) {
+    const regQuery = toQueryFleet(query);
+    const fleet = await FleetRepository.findFleet(rentalId, regQuery, query);
+    if (!fleet.docs.length) {
+      throw new NotFound('Fleet');
+    }
     return fleet;
   }
 
   async findFleetById(fleetId) {
     const fleet = await FleetRepository.findFleetById(fleetId);
+    if (!fleet) {
+      throw new NotFound(`ID: ${fleetId}`);
+    }
     return fleet;
   }
 
   async updateFleet(fleetId, reqBody) {
     const fleet = await FleetRepository.updateFleet(fleetId, reqBody);
+    if (!fleet) {
+      throw new NotFound(`ID: ${fleetId}`);
+    }
     return fleet;
   }
 
   async deleteFleet(fleetId) {
     const fleet = await FleetRepository.deleteFleet(fleetId);
+    if (!fleet) {
+      throw new NotFound(`ID: ${fleetId}`);
+    }
     return fleet;
   }
 }

@@ -22,7 +22,7 @@ class Person {
       name, cpf, email, canDrive,
     } = query;
     return {
-      name: new RegExp(name),
+      name: new RegExp(name, 'i'),
       cpf: new RegExp(cpf),
       email: new RegExp(email),
       canDrive: new RegExp(canDrive),

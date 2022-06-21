@@ -13,7 +13,7 @@ class FleetController {
 
   async findFleet(req, res) {
     try {
-      const fleet = await FleetServices.findFleet();
+      const fleet = await FleetServices.findFleet(req.params.rentalId, req.query);
       res.status(200).send(fleet);
     } catch (error) {
       res.status(400).send(formatError(error));
