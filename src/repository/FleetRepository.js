@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable no-underscore-dangle */
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 const Fleet = require('../models/fleetModel');
@@ -7,7 +6,7 @@ const Fleet = require('../models/fleetModel');
 class FleetRepository {
   async create(reqBody) {
     const fleet = await Fleet.create(reqBody).catch((error) => {
-      if (error._message === 'Fleet validation failed') {
+      if (error.message === 'Fleet validation failed') {
         throw new BadRequest('id format is invalid');
       }
       if (Object.keys(error.keyPattern)[0] === 'plate') {
@@ -46,17 +45,26 @@ class FleetRepository {
   }
 
   async findFleetById(id) {
-    const fleet = await Fleet.findById(id);
+    const fleet = await Fleet.findById(id).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return fleet;
   }
 
   async updateFleet(id, reqBody) {
-    const fleet = await Fleet.findByIdAndUpdate(id, reqBody);
+    const fleet = await Fleet.findByIdAndUpdate(id, { ...reqBody }).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+      if (Object.keys(error.keyPattern)[0] === 'plate') {
+        throw new Conflict(`plate ${reqBody.plate} already has registration`);
+      }
+    });
     return fleet;
   }
 
   async deleteFleet(id) {
-    const fleet = await Fleet.findByIdAndDelete(id);
+    const fleet = await Fleet.findByIdAndDelete(id).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return fleet;
   }
 }

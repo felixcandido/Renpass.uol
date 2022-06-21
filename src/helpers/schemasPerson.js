@@ -20,7 +20,7 @@ const authUpdatePerson = Joi.object({
     .trim()
     .length(11)
     .length(14),
-  birthDay: Joi.string().replace(/(\d{2})\/(\d{2})\/(\d{4})$/, '$3/$2/$1'),
+  birthDay: Joi.string().pattern(/(\d{2})\/(\d{2})\/(\d{4})$/),
   email: Joi.string().email().trim(),
   password: Joi.string().min(6),
   canDrive: Joi.string().valid('yes', 'no'),
