@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 const Fleet = require('../models/fleetModel');

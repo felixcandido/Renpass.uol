@@ -4,6 +4,7 @@ const routesCar = require('./routesCar');
 const routesFleet = require('./routesFleet');
 const routesPerson = require('./routesPerson');
 const routesRental = require('./routesRental');
+const routesReserve = require('./routesReserve');
 const routeSwagger = require('./routeSwagger');
 
 module.exports = (server) => {
@@ -13,6 +14,7 @@ module.exports = (server) => {
     routeAuth(server, new Router());
     routesRental(server, new Router());
     routesFleet(server, new Router({ mergeParams: true }));
+    routesReserve(server, new Router({ mergeParams: true }));
     routeSwagger(server, new Router());
     next();
   });
