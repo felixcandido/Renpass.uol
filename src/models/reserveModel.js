@@ -15,7 +15,7 @@ const reserveSchema = new mongoose.Schema({
   id_car: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Vehicles',
+    ref: 'Fleet',
   },
   data_start: {
     type: String,
