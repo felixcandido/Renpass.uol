@@ -9,10 +9,10 @@ class ReserveRepository {
   }
 
   async findReserve(id_rental, regQuery, query) {
-    const { page = 1, limit = 100 } = query;
+    const { offset = 0, limit = 100 } = query;
 
     const options = {
-      page,
+      offset,
       limit,
       customLabels: { ...customLabels, docs: 'reserves' },
     };
