@@ -16,7 +16,11 @@ class ReserveRepository {
       limit,
       customLabels: { ...customLabels, docs: 'reserves' },
     };
-    const reserve = await Reserve.paginate({ id_rental, ...regQuery }, options);
+    const reserve = await Reserve.paginate({ id_rental, ...regQuery }, options).catch((error) => {
+      if (error.kind === 'ObjectId') {
+        throw new BadRequest('id format is invalid');
+      }
+    });
     return reserve;
   }
 

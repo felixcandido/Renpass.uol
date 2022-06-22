@@ -5,7 +5,7 @@ const authCreateReserve = Joi.object({
   data_start: Joi.string().required().trim(),
   data_end: Joi.string().required().trim(),
   id_car: Joi.string().required().trim(),
-  final_value: Joi.string().required(),
+  final_value: Joi.string(),
 });
 
 const authUpdateReserve = Joi.object({
