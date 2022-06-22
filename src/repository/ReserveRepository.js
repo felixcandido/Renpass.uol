@@ -1,3 +1,5 @@
+const BadRequest = require('../errors/BadRequest');
+const customLabels = require('../helpers/paginateTemplate');
 const Reserve = require('../models/reserveModel');
 
 class ReserveRepository {
@@ -6,23 +8,36 @@ class ReserveRepository {
     return reserve;
   }
 
-  async findReserve(id_rental) {
-    const reserve = await Reserve.paginate({ id_rental });
+  async findReserve(id_rental, regQuery, query) {
+    const { page = 1, limit = 100 } = query;
+
+    const options = {
+      page,
+      limit,
+      customLabels: { ...customLabels, docs: 'reserves' },
+    };
+    const reserve = await Reserve.paginate({ id_rental, ...regQuery }, options);
     return reserve;
   }
 
   async findById(id) {
-    const reserve = await Reserve.findById(id);
+    const reserve = await Reserve.findById(id).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return reserve;
   }
 
   async updateReserve(id, reqBody) {
-    const reserve = await Reserve.findByIdAndUpdate(id, reqBody);
+    const reserve = await Reserve.findByIdAndUpdate(id, reqBody).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return reserve;
   }
 
   async deleteReserve(id) {
-    const reserve = await Reserve.findByIdAndDelete(id);
+    const reserve = await Reserve.findByIdAndDelete(id).catch((error) => {
+      if (error.path === '_id') throw new BadRequest('id format is invalid');
+    });
     return reserve;
   }
 }

@@ -1,6 +1,6 @@
 const NotFound = require('../errors/NotFound');
 const BadRequest = require('../errors/BadRequest');
-const { reserveValue } = require('../helpers/Reserve');
+const { reserveValue, toQueryReserve } = require('../helpers/Reserve');
 const FleetRepository = require('../repository/FleetRepository');
 const PersonRepository = require('../repository/PersonRepository');
 const RentalRepository = require('../repository/RentalRepository');
@@ -25,23 +25,28 @@ class ReserveServices {
     return reserve;
   }
 
-  async findReserve(rentalId) {
-    const reserve = await ReserveRepository.findReserve(rentalId);
+  async findReserve(rentalId, query) {
+    const regQuery = toQueryReserve(query);
+    const reserve = await ReserveRepository.findReserve(rentalId, regQuery, query);
+    if (!reserve.reserves.length) throw new NotFound('Reserve');
     return reserve;
   }
 
   async findById(id) {
     const reserve = await ReserveRepository.findById(id);
+    if (!reserve) throw new NotFound(`ID: ${id}`);
     return reserve;
   }
 
   async updateReserve(reserveId, reqBody) {
     const reserve = await ReserveRepository.updateReserve(reserveId, reqBody);
+    if (!reserve) throw new NotFound(`ID: ${reserveId}`);
     return reserve;
   }
 
   async deleteReserve(reserveId) {
     const reserve = await ReserveRepository.deleteReserve(reserveId);
+    if (!reserve) throw new NotFound(`ID: ${reserveId}`);
     return reserve;
   }
 }
