@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.64% </span>
+                <span class="strong">83.78% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/37</span>
+                <span class='fraction'>31/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.64% </span>
+                <span class="strong">83.78% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/37</span>
+                <span class='fraction'>31/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,23 +107,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -143,24 +143,24 @@ const { toQueryRental } = require('../helpers/Rental');
 const RentalRepository = require('../repository/RentalRepository');
 &nbsp;
 class RentalServices {
-  async create<span class="fstat-no" title="function not covered" >(reqBody) {</span>
-<span class="cstat-no" title="statement not covered" >    const data = await findAdress(reqBody);</span>
-<span class="cstat-no" title="statement not covered" >    const rental = await RentalRepository.create(data);</span>
-<span class="cstat-no" title="statement not covered" >    return rental;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  async create(reqBody) {
+    const data = await findAdress(reqBody);
+    const rental = await RentalRepository.create(data);
+    return rental;
+  }
 &nbsp;
-  async findRental<span class="fstat-no" title="function not covered" >(query) {</span>
-<span class="cstat-no" title="statement not covered" >    const Regquery = toQueryRental(query);</span>
-<span class="cstat-no" title="statement not covered" >    const rental = await RentalRepository.findAll(Regquery, query);</span>
-<span class="cstat-no" title="statement not covered" >    if (!rental.rentals.length) throw new NotFound('Rental');</span>
-<span class="cstat-no" title="statement not covered" >    return rental;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  async findRental(query) {
+    const Regquery = toQueryRental(query);
+    const rental = await RentalRepository.findAll(Regquery, query);
+    if (!rental.rentals.length) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew NotFound('Rental');
+    return rental;
+  }
 &nbsp;
-  async findById<span class="fstat-no" title="function not covered" >(id) {</span>
-<span class="cstat-no" title="statement not covered" >    const result = await RentalRepository.findById(id);</span>
-<span class="cstat-no" title="statement not covered" >    if (!result) throw new NotFound(`ID: ${id}`);</span>
-<span class="cstat-no" title="statement not covered" >    return result;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  async findById(id) {
+    const result = await RentalRepository.findById(id);
+    if (!result) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew NotFound(`ID: ${id}`);
+    return result;
+  }
 &nbsp;
   async updateRental<span class="fstat-no" title="function not covered" >(id, reqBody) {</span>
 <span class="cstat-no" title="statement not covered" >    const updatedRental = await RentalRepository.updateRental(id, reqBody);</span>
@@ -181,7 +181,7 @@ module.exports = new RentalServices();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jun 22 2022 06:07:58 GMT-0300 (Horário Padrão de Brasília)
+                at Wed Jun 22 2022 06:46:10 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../prettify.js"></script>
         <script>

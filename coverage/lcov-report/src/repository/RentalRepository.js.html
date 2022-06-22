@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">68.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/45</span>
+                <span class='fraction'>31/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">68.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/45</span>
+                <span class='fraction'>31/45</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,27 +115,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -159,28 +159,28 @@ const Rental = require('../models/rentalModel');
 const customLabels = require('../helpers/paginateTemplate');
 &nbsp;
 class RentalRepository {
-  async create<span class="fstat-no" title="function not covered" >(reqBody) {</span>
-<span class="cstat-no" title="statement not covered" >    return Rental.create(reqBody).catch((error) =&gt; {</span>
+  async create(reqBody) {
+    return Rental.create(reqBody).catch((error) =&gt; {
 <span class="cstat-no" title="statement not covered" >      if (Object.keys(error.keyPattern)[0] === 'cnpj') throw new Conflict(`CNPJ ${reqBody.cnpj} is already in use`);</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
-  async findAll<span class="fstat-no" title="function not covered" >(regQuery, query) {</span>
-<span class="cstat-no" title="statement not covered" >    const { offset = 0, limit = 100 } = query;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const options = {</span>
-<span class="cstat-no" title="statement not covered" >      offset,</span>
-<span class="cstat-no" title="statement not covered" >      limit,</span>
-<span class="cstat-no" title="statement not covered" >      customLabels: { ...customLabels, docs: 'rentals' },</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >    return Rental.paginate(regQuery, options);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  async findAll(regQuery, query) {
+    const { offset = 0, limit = 100 } = query;
 &nbsp;
-  async findById<span class="fstat-no" title="function not covered" >(id) {</span>
-<span class="cstat-no" title="statement not covered" >    return Rental.findById(id).catch((error) =&gt; {</span>
+    const options = {
+      offset,
+      limit,
+      customLabels: { ...customLabels, docs: 'rentals' },
+    };
+    return Rental.paginate(regQuery, options);
+  }
+&nbsp;
+  async findById(id) {
+    return Rental.findById(id).catch((error) =&gt; {
 <span class="cstat-no" title="statement not covered" >      if (error.path === '_id') throw new BadRequest('id format is invalid');</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
   async updateRental<span class="fstat-no" title="function not covered" >(id, reqBody) {</span>
 <span class="cstat-no" title="statement not covered" >    const x = await Rental.findByIdAndUpdate(id, reqBody).catch((error) =&gt; {</span>
@@ -205,7 +205,7 @@ module.exports = new RentalRepository();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jun 22 2022 06:07:58 GMT-0300 (Horário Padrão de Brasília)
+                at Wed Jun 22 2022 06:46:10 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../prettify.js"></script>
         <script>

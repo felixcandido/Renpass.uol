@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.47% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/34</span>
+                <span class='fraction'>34/34</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">75% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.47% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/34</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,67 +101,67 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const BadRequest = require('../errors/BadRequest');
 &nbsp;
 class Rental {
-<span class="fstat-no" title="function not covered" >  toQueryRental(query) {</span>
-<span class="cstat-no" title="statement not covered" >    const {</span>
-<span class="cstat-no" title="statement not covered" >      name, cnpj, activities, zipCode, street, complement, district, city, state,</span>
-<span class="cstat-no" title="statement not covered" >    } = query;</span>
-<span class="cstat-no" title="statement not covered" >    const Regex = {</span>
-<span class="cstat-no" title="statement not covered" >      name: new RegExp(name, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      cnpj: new RegExp(cnpj),</span>
-<span class="cstat-no" title="statement not covered" >      activities: new RegExp(activities, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      'address.zipCode': new RegExp(zipCode),</span>
-<span class="cstat-no" title="statement not covered" >      'address.street': new RegExp(street, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      'address.complement': new RegExp(complement, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      'address.district': new RegExp(district, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      'address.city': new RegExp(city, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >      'address.state': new RegExp(state, 'i'),</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return Regex;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  toQueryRental(query) {
+    const {
+      name, cnpj, activities, zipCode, street, complement, district, city, state,
+    } = query;
+    const Regex = {
+      name: new RegExp(name, 'i'),
+      cnpj: new RegExp(cnpj),
+      activities: new RegExp(activities, 'i'),
+      'address.zipCode': new RegExp(zipCode),
+      'address.street': new RegExp(street, 'i'),
+      'address.complement': new RegExp(complement, 'i'),
+      'address.district': new RegExp(district, 'i'),
+      'address.city': new RegExp(city, 'i'),
+      'address.state': new RegExp(state, 'i'),
+    };
 &nbsp;
-<span class="fstat-no" title="function not covered" >  isFilialValidation(reqBody) {</span>
-<span class="cstat-no" title="statement not covered" >    const { address } = reqBody;</span>
-<span class="cstat-no" title="statement not covered" >    let count = 0;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    address.forEach((element) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (!element.isFilial) count += 1;</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    if (count !== 1) throw new BadRequest('must have only one /isFilial: false/');</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+    return Regex;
+  }
+&nbsp;
+  isFilialValidation(reqBody) {
+    const { address } = reqBody;
+    let count = 0;
+&nbsp;
+    address.forEach((element) =&gt; {
+      if (!element.isFilial) count += 1;
+    });
+    if (count !== 1) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew BadRequest('must have only one /isFilial: false/');
+  }
 }
 &nbsp;
 module.exports = new Rental();
@@ -172,7 +172,7 @@ module.exports = new Rental();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jun 22 2022 06:07:58 GMT-0300 (Horário Padrão de Brasília)
+                at Wed Jun 22 2022 06:46:10 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../prettify.js"></script>
         <script>

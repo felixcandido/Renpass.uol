@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">92.59% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/27</span>
+                <span class='fraction'>25/27</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">92.59% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/27</span>
+                <span class='fraction'>25/27</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,54 +94,54 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const axios = require('axios');
 const BadRequest = require('../errors/BadRequest');
 const NotFound = require('../errors/NotFound');
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function findAdress(reqBody) {</span></span>
-<span class="cstat-no" title="statement not covered" >  const arrayAdress = [];</span>
-<span class="cstat-no" title="statement not covered" >  const { address } = reqBody;</span>
-<span class="cstat-no" title="statement not covered" >  for (const item of address) {</span>
-<span class="cstat-no" title="statement not covered" >    const { data } = await axios(`https://viacep.com.br/ws/${item.cep}/json/`).catch(() =&gt; {</span>
+async function findAdress(reqBody) {
+  const arrayAdress = [];
+  const { address } = reqBody;
+  for (const item of address) {
+    const { data } = await axios(`https://viacep.com.br/ws/${item.cep}/json/`).catch(() =&gt; {
 <span class="cstat-no" title="statement not covered" >      throw new BadRequest('The field cep is invalid');</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    if (data.erro) throw new NotFound(`cep: ${item.cep}`);</span>
-<span class="cstat-no" title="statement not covered" >    arrayAdress.push({</span>
-<span class="cstat-no" title="statement not covered" >      zipCode: item.cep,</span>
-<span class="cstat-no" title="statement not covered" >      street: data.logradouro,</span>
-<span class="cstat-no" title="statement not covered" >      complement: item.complement || data.complemento,</span>
-<span class="cstat-no" title="statement not covered" >      district: data.bairro,</span>
-<span class="cstat-no" title="statement not covered" >      number: item.number,</span>
-<span class="cstat-no" title="statement not covered" >      city: data.localidade,</span>
-<span class="cstat-no" title="statement not covered" >      state: data.uf,</span>
-<span class="cstat-no" title="statement not covered" >      isFilial: item.isFilial,</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  return { ...reqBody, address: arrayAdress };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    if (data.erro) <span class="branch-0 cbranch-no" title="branch not covered" >throw n</span>ew NotFound(`cep: ${item.cep}`);
+    arrayAdress.push({
+      zipCode: item.cep,
+      street: data.logradouro,
+      complement: item.complement || data.complemento,
+      district: data.bairro,
+      number: item.number,
+      city: data.localidade,
+      state: data.uf,
+      isFilial: item.isFilial,
+    });
+  }
+  return { ...reqBody, address: arrayAdress };
+}
 &nbsp;
 module.exports = findAdress;
 &nbsp;</pre></td></tr></table></pre>
@@ -151,7 +151,7 @@ module.exports = findAdress;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jun 22 2022 06:07:58 GMT-0300 (Horário Padrão de Brasília)
+                at Wed Jun 22 2022 06:46:10 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../prettify.js"></script>
         <script>
