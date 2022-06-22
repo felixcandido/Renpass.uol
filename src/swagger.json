@@ -248,6 +248,30 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Person"
+                },
+                "example": {"people": [
+                  {
+                      "_id": "62ae73fee9762bc056a9e546",
+                      "name": "Joaozinho",
+                      "cpf": "013.468.595-15",
+                      "birthDay": "21/06/2002",
+                      "email": "joazinho@email.com",
+                      "canDrive": "yes",
+                      "__v": 0
+                  },
+                  {
+                      "_id": "62af96c2349d4221004fc78a",
+                      "name": "Yamato",
+                      "cpf": "418.873.880-44",
+                      "birthDay": "13/05/1998",
+                      "email": "joaziho@email.com",
+                      "canDrive": "yes",
+                      "__v": 0
+                  }],
+                  "total": 2,
+                  "offset": 1,
+                  "limit": 100,
+                  "offsets": 1
                 }
               }
             }
@@ -268,6 +292,14 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/Person"
+              },
+              "example": {
+                "name": "Joaozinho",
+                "cpf": "502.227.890-18",
+                "birthDay": "22/07/2002",
+                "email": "joaziho@email.com",
+                "password": "123456",
+                "canDrive": "yes"
               }
             }
           }
@@ -314,7 +346,16 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Person"
-                }
+                },
+                "example": {
+                  "_id": "62ae73fee9762bc056a9e546",
+                  "name": "Joaozinho",
+                  "cpf": "067.432.124-01",
+                  "birthDay": "11/07/2000",
+                  "email": "joazinho@hotmail.com",
+                  "canDrive": "yes",
+                  "__v": 0
+              }
               }
             }
           },
@@ -444,6 +485,34 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Vehicles"
+                },
+                "example": {
+                  "vehicles": [
+                    {
+                        "_id": "62a37521a6198003a53407fe",
+                        "model": "S10 2.8",
+                        "type": "sedan",
+                        "brand": "GM",
+                        "color": "branco",
+                        "year": 2021,
+                        "accessories": [
+                            {
+                                "description": "Ar-condicionado",
+                                "_id": "62afcceecd484f0c50165f50"
+                            },
+                            {
+                                "description": "Dir. Hidráulica",
+                                "_id": "62afcceecd484f0c50165f51"
+                            }
+                        ],
+                        "passengersQtd": 5,
+                        "__v": 0
+                    }],
+
+                    "total": 21,
+                    "offset": 1,
+                    "limit": 100,
+                    "offsets": 1
                 }
               }
             }
@@ -472,6 +541,19 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/Vehicles"
+              },
+              "example": {
+                "model": "S10 2.8",
+                "type": "sedan",
+                "brand": "GM",
+                "color": "branco",
+                "year": "2021",
+                "accessories": [
+                  {
+                    "description": "Ar-condicionado"
+                  }
+                ],
+                "passengersQtd": 5
               }
             }
           }
@@ -526,7 +608,23 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Vehicles"
-                }
+                },
+                "example": {
+                  "_id": "62afc5409035874a580508d1",
+                  "model": "S10 2.8",
+                  "type": "sedan",
+                  "brand": "GM",
+                  "color": "branco",
+                  "year": 2021,
+                  "accessories": [
+                      {
+                          "description": "Ar-condicionado",
+                          "_id": "62afc5409035874a580508d2"
+                      }
+                  ],
+                  "passengersQtd": 1,
+                  "__v": 0
+              }
               }
             }
           },
@@ -567,6 +665,9 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/Vehicles"
+              },
+              "example": {
+                "model": "S10 2.8"
               }
             }
           }
@@ -651,6 +752,9 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/Accessories"
+              },
+              "example": {
+                "description": "4 portas" 
               }
             }
           }
@@ -747,6 +851,33 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Rental"
+                },
+                "example": {
+                  "rentals": [
+                    {
+                        "_id": "62a56e94a6150533a1b5e429",
+                        "name": "joaozinho",
+                        "cnpj": "18.670.085/0011-55",
+                        "activities": "Aluguel de Carros E Gestão de Frotas",
+                        "address": [
+                            {
+                                "zipCode": "47810-178",
+                                "street": "Rua Maria Coelho da Cruz",
+                                "complement": "",
+                                "district": "Morada Nobre",
+                                "number": "1234",
+                                "city": "Barreiras",
+                                "state": "BA",
+                                "isFilial": false,
+                                "_id": "62a56e94a6150533a1b5e42a"
+                            }
+                        ],
+                        "__v": 0
+                    }],
+                    "total": 14,
+                    "offset": 1,
+                    "limit": 100,
+                    "offsets": 1
                 }
               }
             }
@@ -767,7 +898,18 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/Rental"
-              }
+              },
+              "example": {
+                "name": "hhh",
+                "activities": "Aluguel de Carros E Gestão de Frotas",
+                "address": [
+                    {
+                    "cep": "96200-200",
+                    "number":"1234",
+                    "isFilial": true
+                    }
+                ]
+                }
             }
           }
         },
@@ -922,6 +1064,24 @@
                   "schema": {
                     "type": "object",
                     "$ref": "#/components/schemas/Fleet"
+                  },
+                  "example": {
+                    "fleet": [
+                      {
+                          "_id": "62b159586cf9706c7567e22f",
+                          "id_car": "62a37521a6198003a53407fe",
+                          "id_rental": "62ae65ca1e512922d216788d",
+                          "status": "available",
+                          "daily_value": "190,20",
+                          "plate": "ABC146",
+                          "__v": 0
+                      }
+                    ],
+                    "total": 2,
+                    "offset": 1,
+                    "limit": 100,
+                    "offsets": 1
+                    
                   }
                 }
               }
@@ -945,7 +1105,13 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Fleet"
-                }
+                },
+                "example": {
+                  "id_car": "62a37521a6198003a53407fe",
+                  "status": "available",
+                  "daily_value": "190,20",
+                  "plate": "ABC166"
+              }
               }
             }
           },
@@ -1151,6 +1317,24 @@
                   "schema": {
                     "type": "object",
                     "$ref": "#/components/schemas/Reserve"
+                  },
+                  "example": {
+                    "reserves": [
+                        {
+                            "_id": "62b1f8481235f38d6bcc5cbe",
+                            "id_user": "62ae65ca1e512922d216788d",
+                            "id_rental": "62ae65ca1e512922d216788d",
+                            "id_car": "62ae65ca1e512922d216788d",
+                            "data_start": "20/11/2021",
+                            "data_end": "30/11/2021",
+                            "final_value": "500,00",
+                            "__v": 0
+                        }
+                      ],
+                      "total": 72,
+                      "offset": 1,
+                      "limit": 100,
+                      "offsets": 1
                   }
                 }
               }
@@ -1174,7 +1358,13 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/Reserve"
-                }
+                },
+                "example": {
+                  "id_user": "62ae73fee9762bc056a9e546",
+                  "data_start": "20/11/2021",
+                  "data_end": "26/11/2021",
+                  "id_car": "62b1595e6cf9706c7567e233"
+              }
               }
             }
           },
