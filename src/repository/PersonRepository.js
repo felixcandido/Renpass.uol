@@ -1,6 +1,7 @@
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 const Person = require('../models/personModel');
+const customLabels = require('../helpers/paginateTemplate');
 
 class PersonRepository {
   async create(reqBody) {
@@ -14,23 +15,10 @@ class PersonRepository {
   async findPeople(RegQuery, query) {
     const { page = 1, limit = 100 } = query;
 
-    const customLabels = {
-      docs: 'people',
-      totalDocs: 'total',
-      page: 'offset',
-      nextPage: false,
-      prevPage: false,
-      totalPages: 'offsets',
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false,
-    };
-
     const options = {
       page,
       limit,
-      customLabels,
+      customLabels: { ...customLabels, docs: 'people' },
     };
     return Person.paginate(RegQuery, options);
   }

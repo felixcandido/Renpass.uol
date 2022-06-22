@@ -1,4 +1,5 @@
 const BadRequest = require('../errors/BadRequest');
+const customLabels = require('../helpers/paginateTemplate');
 const Vehicles = require('../models/vehiclesModel');
 
 class CarRepository {
@@ -10,23 +11,10 @@ class CarRepository {
   async findCars(RegQuery, query) {
     const { page = 1, limit = 100 } = query;
 
-    const customLabels = {
-      docs: 'vehicles',
-      totalDocs: 'total',
-      page: 'offset',
-      nextPage: false,
-      prevPage: false,
-      totalPages: 'offsets',
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false,
-    };
-
     const options = {
       page,
       limit,
-      customLabels,
+      customLabels: { ...customLabels, docs: 'vehicles' },
     };
     return Vehicles.paginate(RegQuery, options);
   }

@@ -1,6 +1,7 @@
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 const Rental = require('../models/rentalModel');
+const customLabels = require('../helpers/paginateTemplate');
 
 class RentalRepository {
   async create(reqBody) {
@@ -11,23 +12,11 @@ class RentalRepository {
 
   async findAll(regQuery, query) {
     const { page = 1, limit = 100 } = query;
-    const customLabels = {
-      docs: 'rentals',
-      totalDocs: 'total',
-      page: 'offset',
-      nextPage: false,
-      prevPage: false,
-      totalPages: 'offsets',
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false,
-    };
 
     const options = {
       page,
       limit,
-      customLabels,
+      customLabels: { ...customLabels, docs: 'rentals' },
     };
     return Rental.paginate(regQuery, options);
   }
