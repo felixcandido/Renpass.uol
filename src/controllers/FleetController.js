@@ -7,7 +7,7 @@ class FleetController {
       const fleet = await FleetServices.create(req.body, req.params.rentalId);
       res.status(201).send(fleet);
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error) || error);
+      res.status(error.status).send(formatError(error) || error);
     }
   }
 
@@ -16,7 +16,7 @@ class FleetController {
       const fleet = await FleetServices.findFleet(req.params.rentalId, req.query);
       res.status(200).send(fleet);
     } catch (error) {
-      res.status(400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -25,7 +25,7 @@ class FleetController {
       const fleet = await FleetServices.findFleetById(req.params.fleetId);
       res.status(200).send(fleet);
     } catch (error) {
-      res.status(400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -34,7 +34,7 @@ class FleetController {
       await FleetServices.updateFleet(req.params.fleetId, req.body);
       res.status(204).end();
     } catch (error) {
-      res.status(400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -43,7 +43,7 @@ class FleetController {
       await FleetServices.deleteFleet(req.params.fleetId);
       res.status(204).end();
     } catch (error) {
-      res.status(400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 }

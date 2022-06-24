@@ -7,7 +7,7 @@ class CarController {
       const result = await CarServices.create(req.body);
       res.status(201).send(result);
     } catch (error) {
-      res.status(error.status || 400).send(error);
+      res.status(error.status).send(error);
     }
   }
 
@@ -16,7 +16,7 @@ class CarController {
       const result = await CarServices.findAllCars(req.query);
       res.status(200).send(result);
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -25,7 +25,7 @@ class CarController {
       const result = await CarServices.findCarById(req.params.CarId);
       res.status(200).send(result);
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -34,7 +34,7 @@ class CarController {
       await CarServices.updateCar(req.params.CarId, req.body);
       res.status(204).end();
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -43,7 +43,7 @@ class CarController {
       await CarServices.updateAccessories(req.params.id, req.body);
       res.status(204).end();
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 
@@ -52,7 +52,7 @@ class CarController {
       await CarServices.deleteCar(req.params.CarId);
       res.status(204).end();
     } catch (error) {
-      res.status(error.status || 400).send(formatError(error));
+      res.status(error.status).send(formatError(error));
     }
   }
 }
