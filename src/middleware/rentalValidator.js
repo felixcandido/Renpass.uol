@@ -1,6 +1,6 @@
 const formatError = require('../helpers/formatError');
 const { isFilialValidation } = require('../helpers/Rental');
-const { authCreateRental, authUpdateRental } = require('../helpers/schemaRental');
+const { authCreateRental, authUpdateRental } = require('../validations/schemaRental');
 
 module.exports = async (req, res, next) => {
   try {

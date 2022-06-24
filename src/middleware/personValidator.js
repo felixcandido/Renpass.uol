@@ -1,7 +1,7 @@
 const BadRequest = require('../errors/BadRequest');
 const formatError = require('../helpers/formatError');
 const { validationCpf } = require('../helpers/Person');
-const { authCreatePerson, authUpdatePerson } = require('../helpers/schemasPerson');
+const { authCreatePerson, authUpdatePerson } = require('../validations/schemasPerson');
 
 module.exports = async (req, res, next) => {
   try {

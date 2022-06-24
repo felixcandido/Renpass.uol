@@ -1,5 +1,5 @@
 const formatError = require('../helpers/formatError');
-const { authCreateReserve, authUpdateReserve } = require('../helpers/schemaReserve');
+const { authCreateReserve, authUpdateReserve } = require('../validations/schemaReserve');
 
 module.exports = async (req, res, next) => {
   try {

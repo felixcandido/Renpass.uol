@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const authCreateRental = Joi.object({
-  name: Joi.string().required().trim(),
-  cnpj: Joi.string().required().trim(),
-  activities: Joi.string().required().trim(),
+  name: Joi.string().trim().required(),
+  cnpj: Joi.string().trim().required(),
+  activities: Joi.string().trim().required(),
   address: Joi.array().items({
     cep: Joi.string().trim().required(),
     number: Joi.string().trim().required(),

@@ -1,13 +1,13 @@
 const Joi = require('joi');
 
 const authCreateVehicles = Joi.object({
-  model: Joi.string().required().trim(),
-  type: Joi.string().required().trim(),
-  brand: Joi.string().required().trim(),
-  color: Joi.string().required().trim(),
-  year: Joi.number().required().min(1950).max(2022),
-  accessories: Joi.array().required().min(1).unique(),
-  passengersQtd: Joi.number().required().min(1),
+  model: Joi.string().trim().required(),
+  type: Joi.string().trim().required(),
+  brand: Joi.string().trim().required(),
+  color: Joi.string().trim().required(),
+  year: Joi.number().min(1950).max(2022).required(),
+  accessories: Joi.array().min(1).unique().required(),
+  passengersQtd: Joi.number().min(1).required(),
 });
 
 const authUpdateVehicles = Joi.object({

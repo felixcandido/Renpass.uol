@@ -7,7 +7,7 @@ function formatError(error) {
       })),
     };
   } catch {
-    return null;
+    return error;
   }
 }
 

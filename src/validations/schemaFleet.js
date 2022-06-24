@@ -1,10 +1,10 @@
 const Joi = require('joi');
 
 const authCreateFleet = Joi.object({
-  id_car: Joi.string().required().trim(),
-  status: Joi.string().required().valid('available', 'unavailable', 'rented').trim(),
-  daily_value: Joi.string().required().trim(),
-  plate: Joi.string().required().trim(),
+  id_car: Joi.string().trim().required(),
+  status: Joi.string().valid('available', 'unavailable', 'rented').trim().required(),
+  daily_value: Joi.string().trim().required(),
+  plate: Joi.string().trim().required(),
 });
 
 const authUpdateFleet = Joi.object({

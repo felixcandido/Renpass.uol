@@ -1,10 +1,10 @@
 const Joi = require('joi');
 
 const authCreateReserve = Joi.object({
-  id_user: Joi.string().required().trim(),
-  data_start: Joi.string().required().trim(),
-  data_end: Joi.string().required().trim(),
-  id_car: Joi.string().required().trim(),
+  id_user: Joi.string().trim().required(),
+  data_start: Joi.string().trim().required(),
+  data_end: Joi.string().trim().required(),
+  id_car: Joi.string().trim().required(),
   final_value: Joi.string(),
 });
 

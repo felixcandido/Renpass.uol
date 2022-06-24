@@ -1,5 +1,5 @@
 const formatError = require('../helpers/formatError');
-const { authCreateVehicles, authUpdateVehicles } = require('../helpers/schemaVehicles');
+const { authCreateVehicles, authUpdateVehicles } = require('../validations/schemaVehicles');
 
 module.exports = async (req, res, next) => {
   try {
