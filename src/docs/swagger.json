@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://renpass-uol.herokuapp.com/",
+      "url": "https://renpass-felix.herokuapp.com/",
       "description": "API - Heroku"
     },
     {
@@ -972,6 +972,16 @@
         "tags": [
           "Rental"
         ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1098,6 +1108,16 @@
           "summary": "register a new fleet",
           "tags": [
             "Fleet"
+          ],
+          "parameters": [
+            {
+              "name": "rentalId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
           ],
           "requestBody": {
             "content": {
@@ -1351,6 +1371,16 @@
           "summary": "register a new Reserve",
           "tags": [
             "Reserve"
+          ],
+          "parameters": [
+            {
+              "name": "rentalId",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
           ],
           "requestBody": {
             "content": {

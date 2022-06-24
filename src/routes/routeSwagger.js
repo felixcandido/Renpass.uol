@@ -1,5 +1,5 @@
 const swaggerUi = require('swagger-ui-express');
-const swagger = require('../swagger.json');
+const swagger = require('../docs/swagger.json');
 
 module.exports = (server, routes, prefix = '/api/v1/api-docs') => {
   routes.use('/', swaggerUi.serve);
