@@ -12,7 +12,7 @@ class CarRepository {
     const { offset = 0, limit = 100 } = query;
 
     const options = {
-      offset,
+      page: offset,
       limit,
       customLabels: { ...customLabels, docs: 'vehicles' }
     };
