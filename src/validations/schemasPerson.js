@@ -24,7 +24,7 @@ const authUpdatePerson = Joi.object({
   birthDay: Joi.string().pattern(/(\d{2})\/(\d{2})\/(\d{4})$/),
   email: Joi.string().email().trim(),
   password: Joi.string().min(6),
-  canDrive: Joi.string().valid('yes', 'no'),
+  canDrive: Joi.string().valid(...Object.values(PERSON_CAN_DRIVE)),
 });
 
 module.exports = {
