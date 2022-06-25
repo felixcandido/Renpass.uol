@@ -14,6 +14,10 @@ class CarController {
   async findAllCars(req, res) {
     try {
       const result = await CarServices.findAllCars(req.query);
+      if (!result.vehicles.length) {
+        res.status(204).end();
+        return;
+      }
       res.status(200).send(result);
     } catch (error) {
       res.status(error.status).send(formatError(error));

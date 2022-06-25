@@ -13,8 +13,12 @@ class ReserveController {
 
   async findReserve(req, res) {
     try {
-      const reserve = await ReserveServices.findReserve(req.params.rentalId, req.query);
-      res.status(200).send(reserve);
+      const result = await ReserveServices.findReserve(req.params.rentalId, req.query);
+      if (!result.reserves.length) {
+        res.status(204).end();
+        return;
+      }
+      res.status(200).send(result);
     } catch (error) {
       res.status(error.status).send(formatError(error) || error);
     }

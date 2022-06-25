@@ -14,6 +14,10 @@ class PersonController {
   async findAllPeople(req, res) {
     try {
       const result = await PersonServices.findAllPeople(req.query);
+      if (!result.people.length) {
+        res.status(204).end();
+        return;
+      }
       res.status(200).send(result);
     } catch (error) {
       res.status(error.status).send(formatError(error));

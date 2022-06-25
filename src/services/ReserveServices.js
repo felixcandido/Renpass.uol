@@ -28,7 +28,6 @@ class ReserveServices {
   async findReserve(rentalId, query) {
     const regQuery = toQueryReserve(query);
     const reserve = await ReserveRepository.findReserve(rentalId, regQuery, query);
-    if (!reserve.reserves.length) throw new NotFound('Reserve');
     return reserve;
   }
 

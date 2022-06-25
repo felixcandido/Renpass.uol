@@ -13,7 +13,6 @@ class RentalServices {
   async findRental(query) {
     const Regquery = toQueryRental(query);
     const rental = await RentalRepository.findAll(Regquery, query);
-    if (!rental.rentals.length) throw new NotFound('Rental');
     return rental;
   }
 

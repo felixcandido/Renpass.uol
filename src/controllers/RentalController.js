@@ -14,6 +14,10 @@ class RentalController {
   async findRental(req, res) {
     try {
       const result = await RentalServices.findRental(req.query);
+      if (!result.rentals.length) {
+        res.status(204).end();
+        return;
+      }
       res.status(200).send(result);
     } catch (error) {
       res.status(error.status).send(formatError(error));
