@@ -5,8 +5,8 @@ class BadRequest extends Error {
     this.details = [
       {
         path: ['Bad Request'],
-        message: `${message}`,
-      },
+        message: `${message}`
+      }
     ];
   }
 }

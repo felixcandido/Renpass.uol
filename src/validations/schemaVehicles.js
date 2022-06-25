@@ -6,11 +6,14 @@ const authCreateVehicles = Joi.object({
   brand: Joi.string().trim().required(),
   color: Joi.string().trim().required(),
   year: Joi.number().min(1950).max(2022).required(),
-  accessories: Joi.array().min(1).items({
-    description: Joi.string().required(),
-  }).unique()
+  accessories: Joi.array()
+    .min(1)
+    .items({
+      description: Joi.string().required()
+    })
+    .unique()
     .required(),
-  passengersQtd: Joi.number().min(1).required(),
+  passengersQtd: Joi.number().min(1).required()
 });
 
 const authUpdateVehicles = Joi.object({
@@ -19,13 +22,16 @@ const authUpdateVehicles = Joi.object({
   brand: Joi.string().trim(),
   color: Joi.string().trim(),
   year: Joi.number().min(1950).max(2022),
-  accessories: Joi.array().min(1).items({
-    description: Joi.string().required(),
-  }).unique(),
-  passengersQtd: Joi.number().min(1),
+  accessories: Joi.array()
+    .min(1)
+    .items({
+      description: Joi.string().required()
+    })
+    .unique(),
+  passengersQtd: Joi.number().min(1)
 });
 
 module.exports = {
   authCreateVehicles,
-  authUpdateVehicles,
+  authUpdateVehicles
 };

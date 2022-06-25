@@ -3,10 +3,10 @@ function formatError(error) {
     return {
       errors: error.details.map((detail) => ({
         name: detail.path.join(''),
-        description: detail.message,
-      })),
+        description: detail.message
+      }))
     };
-  } catch {
+  } catch (err) {
     return error;
   }
 }

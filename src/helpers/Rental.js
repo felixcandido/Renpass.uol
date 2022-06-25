@@ -2,9 +2,7 @@ const BadRequest = require('../errors/BadRequest');
 
 class Rental {
   toQueryRental(query) {
-    const {
-      name, cnpj, activities, zipCode, street, complement, district, city, state,
-    } = query;
+    const { name, cnpj, activities, zipCode, street, complement, district, city, state } = query;
     const Regex = {
       name: new RegExp(name, 'i'),
       cnpj: new RegExp(cnpj),
@@ -14,7 +12,7 @@ class Rental {
       'address.complement': new RegExp(complement, 'i'),
       'address.district': new RegExp(district, 'i'),
       'address.city': new RegExp(city, 'i'),
-      'address.state': new RegExp(state, 'i'),
+      'address.state': new RegExp(state, 'i')
     };
 
     return Regex;

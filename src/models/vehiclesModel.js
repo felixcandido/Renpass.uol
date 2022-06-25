@@ -1,42 +1,44 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const accessoriesSchema = new mongoose.Schema({
-  description: {
-    type: String,
-    required: true,
+const accessoriesSchema = new mongoose.Schema(
+  {
+    description: {
+      type: String,
+      required: true
+    }
   },
-}, { versionKey: false });
+  { versionKey: false }
+);
 
 const vehiclesSchema = new mongoose.Schema({
   model: {
     type: String,
-    required: true,
+    required: true
   },
   type: {
     type: String,
-    required: true,
+    required: true
   },
   brand: {
     type: String,
-    required: true,
+    required: true
   },
   color: {
     type: String,
-    required: true,
+    required: true
   },
   year: {
     type: Number,
-    required: true,
+    required: true
   },
   accessories: {
     type: [accessoriesSchema],
-    required: true,
-
+    required: true
   },
   passengersQtd: {
-    type: Number,
-  },
+    type: Number
+  }
 });
 
 vehiclesSchema.plugin(mongoosePaginate);

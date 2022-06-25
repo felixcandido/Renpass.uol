@@ -15,7 +15,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     expect(createdPerson.status).toBe(201);
   });
@@ -26,7 +26,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2015',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     expect(createdPerson.status).toBe(400);
   });
@@ -38,7 +38,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
 
     const createSecondPerson = await request(app).post('/api/v1/person').send({
@@ -47,7 +47,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     expect(createSecondPerson.status).toBe(400);
   });
@@ -64,7 +64,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     const people = await request(app).get('/api/v1/person').send();
     expect(people.status).toBe(200);
@@ -76,7 +76,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     const people = await request(app).get(`/api/v1/person/${person.body._id}`).send();
     expect(people.status).toBe(200);
@@ -89,7 +89,7 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     const people = await request(app).delete(`/api/v1/person/${person.body._id}`).send();
     expect(people.status).toBe(204);
@@ -101,10 +101,10 @@ describe('CRUD Person', () => {
       birthDay: '03/03/2000',
       email: faker.internet.email(),
       password: '123456',
-      canDrive: 'yes',
+      canDrive: 'yes'
     });
     const updatePerson = await request(app).patch(`/api/v1/person/${person.body._id}`).send({
-      name: faker.name.findName(),
+      name: faker.name.findName()
     });
     expect(updatePerson.status).toBe(204);
   });

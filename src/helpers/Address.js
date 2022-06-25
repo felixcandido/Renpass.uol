@@ -5,7 +5,9 @@ const NotFound = require('../errors/NotFound');
 async function findAdress(reqBody) {
   const arrayAdress = [];
   const { address } = reqBody;
+  // eslint-disable-next-line no-restricted-syntax
   for (const item of address) {
+    // eslint-disable-next-line no-await-in-loop
     const { data } = await axios(`https://viacep.com.br/ws/${item.cep}/json/`).catch(() => {
       throw new BadRequest('The field cep is invalid');
     });
@@ -18,7 +20,7 @@ async function findAdress(reqBody) {
       number: item.number,
       city: data.localidade,
       state: data.uf,
-      isFilial: item.isFilial,
+      isFilial: item.isFilial
     });
   }
   return { ...reqBody, address: arrayAdress };

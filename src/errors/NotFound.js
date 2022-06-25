@@ -5,8 +5,8 @@ class NotFound extends Error {
     this.details = [
       {
         path: ['Not Found'],
-        message: `${message} Not Found`,
-      },
+        message: `${message} Not Found`
+      }
     ];
   }
 }

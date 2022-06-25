@@ -22,7 +22,7 @@ class FleetRepository {
     const options = {
       offset,
       limit,
-      customLabels: { ...customLabels, docs: 'fleet' },
+      customLabels: { ...customLabels, docs: 'fleet' }
     };
     const fleet = await Fleet.paginate({ id_rental, ...regQuery }, options).catch((error) => {
       if (error.kind === 'ObjectId') {

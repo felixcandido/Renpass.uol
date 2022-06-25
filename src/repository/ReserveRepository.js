@@ -14,7 +14,7 @@ class ReserveRepository {
     const options = {
       offset,
       limit,
-      customLabels: { ...customLabels, docs: 'reserves' },
+      customLabels: { ...customLabels, docs: 'reserves' }
     };
     const reserve = await Reserve.paginate({ id_rental, ...regQuery }, options).catch((error) => {
       if (error.kind === 'ObjectId') {

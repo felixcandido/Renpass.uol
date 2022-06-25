@@ -6,32 +6,32 @@ const { PERSON_CAN_DRIVE } = require('../helpers/ENUMS');
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   cpf: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   birthDay: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   password: {
     type: String,
     required: true,
-    select: false,
+    select: false
   },
   canDrive: {
     type: String,
     enum: [...Object.values(PERSON_CAN_DRIVE)],
-    required: true,
-  },
+    required: true
+  }
 });
 
 personSchema.plugin(mongoosePaginate);

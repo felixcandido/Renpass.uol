@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 class Fleet {
   toQueryFleet(query) {
     const { status, daily_value, plate } = query;
@@ -6,7 +5,7 @@ class Fleet {
     return {
       status: new RegExp(status),
       daily_value: new RegExp(daily_value),
-      plate: new RegExp(plate, 'i'),
+      plate: new RegExp(plate, 'i')
     };
   }
 }

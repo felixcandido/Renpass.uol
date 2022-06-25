@@ -5,7 +5,7 @@ const authCreateReserve = Joi.object({
   data_start: Joi.date().format('DD/MM/YYYY').required(),
   data_end: Joi.date().format('DD/MM/YYYY').required(),
   id_car: Joi.string().trim().required(),
-  final_value: Joi.string(),
+  final_value: Joi.string()
 });
 
 const authUpdateReserve = Joi.object({
@@ -13,10 +13,10 @@ const authUpdateReserve = Joi.object({
   data_start: Joi.date().format('DD/MM/YYYY'),
   data_end: Joi.date().format('DD/MM/YYYY'),
   id_car: Joi.string().trim(),
-  final_value: Joi.string(),
+  final_value: Joi.string()
 });
 
 module.exports = {
   authCreateReserve,
-  authUpdateReserve,
+  authUpdateReserve
 };

@@ -14,7 +14,7 @@ class CarRepository {
     const options = {
       offset,
       limit,
-      customLabels: { ...customLabels, docs: 'vehicles' },
+      customLabels: { ...customLabels, docs: 'vehicles' }
     };
     return Vehicles.paginate(RegQuery, options);
   }
@@ -36,7 +36,7 @@ class CarRepository {
   async updateAccessorie(id, reqBody) {
     const accessorie = await Vehicles.findOneAndUpdate(
       { 'accessories._id': id },
-      { $set: { 'accessories.$.description': reqBody.description } },
+      { $set: { 'accessories.$.description': reqBody.description } }
     ).catch((error) => {
       if (error.path === '_id') throw new BadRequest('id format is invalid');
     });

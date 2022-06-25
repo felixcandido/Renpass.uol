@@ -16,7 +16,7 @@ class RentalRepository {
     const options = {
       offset,
       limit,
-      customLabels: { ...customLabels, docs: 'rentals' },
+      customLabels: { ...customLabels, docs: 'rentals' }
     };
     return Rental.paginate(regQuery, options);
   }

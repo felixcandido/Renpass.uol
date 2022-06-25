@@ -4,7 +4,5 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**', '!src/models'],
   coverageProvider: 'v8',
-  testMatch: [
-    '**/__tests__/**/*.test.js?(x)',
-  ],
+  testMatch: ['**/__tests__/**/*.test.js?(x)']
 };

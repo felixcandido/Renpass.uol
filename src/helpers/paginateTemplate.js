@@ -7,7 +7,7 @@ const customLabels = {
   pagingCounter: false,
   meta: false,
   hasPrevPage: false,
-  hasNextPage: false,
+  hasNextPage: false
 };
 
 module.exports = customLabels;

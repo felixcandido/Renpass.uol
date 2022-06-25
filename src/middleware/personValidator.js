@@ -13,7 +13,9 @@ module.exports = async (req, res, next) => {
       const data = await authUpdatePerson.validateAsync(req.body, { abortEarly: false });
       req.body = data;
     }
-    if (!validationCpf(req.body.cpf)) { throw new BadRequest(`Invalid CPF ${req.body.cpf}`); }
+    if (!validationCpf(req.body.cpf)) {
+      throw new BadRequest(`Invalid CPF ${req.body.cpf}`);
+    }
     next();
   } catch (error) {
     res.status(400).send(formatError(error));

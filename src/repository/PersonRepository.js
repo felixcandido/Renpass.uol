@@ -18,7 +18,7 @@ class PersonRepository {
     const options = {
       offset,
       limit,
-      customLabels: { ...customLabels, docs: 'people' },
+      customLabels: { ...customLabels, docs: 'people' }
     };
     return Person.paginate(RegQuery, options);
   }

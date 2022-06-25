@@ -5,8 +5,8 @@ class Conflict extends Error {
     this.details = [
       {
         path: ['conflict'],
-        message: `${message}`,
-      },
+        message: `${message}`
+      }
     ];
   }
 }

@@ -5,8 +5,8 @@ class Unauthorized extends Error {
     this.details = [
       {
         path: ['Unauthorized'],
-        message: `${message}`,
-      },
+        message: `${message}`
+      }
     ];
   }
 }

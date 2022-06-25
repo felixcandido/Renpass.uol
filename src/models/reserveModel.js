@@ -5,30 +5,30 @@ const reserveSchema = new mongoose.Schema({
   id_user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Person',
+    ref: 'Person'
   },
   id_rental: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Rental',
+    ref: 'Rental'
   },
   id_car: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Fleet',
+    ref: 'Fleet'
   },
   data_start: {
     type: String,
-    required: true,
+    required: true
   },
   data_end: {
     type: String,
-    required: true,
+    required: true
   },
   final_value: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
 reserveSchema.plugin(mongoosePaginate);
