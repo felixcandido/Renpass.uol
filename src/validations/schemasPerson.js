@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { PERSON_CAN_DRIVE } = require('../helpers/ENUMS');
 
 const authCreatePerson = Joi.object({
   name: Joi.string().trim().required(),
@@ -11,7 +12,7 @@ const authCreatePerson = Joi.object({
   birthDay: Joi.string().pattern(/(\d{2})\/(\d{2})\/(\d{4})$/).required(),
   email: Joi.string().email().trim().required(),
   password: Joi.string().min(6).required(),
-  canDrive: Joi.string().valid('yes', 'no').required(),
+  canDrive: Joi.string().valid(...Object.values(PERSON_CAN_DRIVE)).required(),
 });
 
 const authUpdatePerson = Joi.object({
