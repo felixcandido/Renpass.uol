@@ -36,8 +36,7 @@ const personSchema = new mongoose.Schema({
 
 personSchema.plugin(mongoosePaginate);
 
-// eslint-disable-next-line func-names
-personSchema.pre('save', async function (next) {
+personSchema.pre('save', async function hashPassword(next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
   next();

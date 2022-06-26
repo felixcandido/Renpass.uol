@@ -1,5 +1,4 @@
 const BadRequest = require('../errors/BadRequest');
-const Conflict = require('../errors/Conflict');
 const customLabels = require('../helpers/paginateTemplate');
 const Fleet = require('../models/fleetModel');
 
@@ -10,7 +9,7 @@ class FleetRepository {
         throw new BadRequest('id format is invalid');
       }
       if (Object.keys(error.keyPattern)[0] === 'plate') {
-        throw new Conflict(`plate ${reqBody.plate} already has registration`);
+        throw new BadRequest(`plate ${reqBody.plate} already has registration`);
       }
     });
     return fleet;
@@ -43,7 +42,7 @@ class FleetRepository {
     const fleet = await Fleet.findByIdAndUpdate(id, { ...reqBody }).catch((error) => {
       if (error.path === '_id') throw new BadRequest('id format is invalid');
       if (Object.keys(error.keyPattern)[0] === 'plate') {
-        throw new Conflict(`plate ${reqBody.plate} already has registration`);
+        throw new BadRequest(`plate ${reqBody.plate} already has registration`);
       }
     });
     return fleet;
