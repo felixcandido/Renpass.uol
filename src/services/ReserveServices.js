@@ -13,6 +13,7 @@ class ReserveServices {
 
     const car = await FleetRepository.findFleetById(reqBody.id_car);
     if (!car) throw new NotFound(`car with ID: ${reqBody.id_car}`);
+    if (car.status !== 'available') throw new BadRequest('vehicle is not available in the moment');
 
     const user = await PersonRepository.findPersonById(reqBody.id_user);
     if (!user) throw new NotFound(`user with ID: ${reqBody.id_user}`);
@@ -22,6 +23,7 @@ class ReserveServices {
     const final_value = reserveValue(data_start, data_end, car.daily_value);
 
     const reserve = await ReserveRepository.createReserve({ ...reqBody, id_rental, final_value });
+    await FleetRepository.updateFleet(reqBody.id_car, { status: 'rented' });
     return reserve;
   }
 

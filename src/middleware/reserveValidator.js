@@ -4,12 +4,10 @@ const { authCreateReserve, authUpdateReserve } = require('../validations/schemaR
 module.exports = async (req, res, next) => {
   try {
     if (req.method === 'POST') {
-      const data = await authCreateReserve.validateAsync(req.body, { abortEarly: false });
-      req.body = data;
+      await authCreateReserve.validateAsync(req.body, { abortEarly: false });
     }
     if (req.method === 'PATCH') {
-      const data = await authUpdateReserve.validateAsync(req.body, { abortEarly: false });
-      req.body = data;
+      await authUpdateReserve.validateAsync(req.body, { abortEarly: false });
     }
     next();
   } catch (error) {

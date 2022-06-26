@@ -6,12 +6,10 @@ const { authCreatePerson, authUpdatePerson } = require('../validations/schemasPe
 module.exports = async (req, res, next) => {
   try {
     if (req.method === 'POST') {
-      const data = await authCreatePerson.validateAsync(req.body, { abortEarly: false });
-      req.body = data;
+      await authCreatePerson.validateAsync(req.body, { abortEarly: false });
     }
     if (req.method === 'PATCH') {
-      const data = await authUpdatePerson.validateAsync(req.body, { abortEarly: false });
-      req.body = data;
+      await authUpdatePerson.validateAsync(req.body, { abortEarly: false });
     }
     if (!validationCpf(req.body.cpf)) {
       throw new BadRequest(`Invalid CPF ${req.body.cpf}`);
