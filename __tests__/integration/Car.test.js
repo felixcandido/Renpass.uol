@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const request = require('supertest');
 const app = require('../../src/app');
 const Car = require('../../src/models/rentalModel');

@@ -1,5 +1,3 @@
-/* eslint-disable semi */
-/* eslint-disable no-underscore-dangle */
 const request = require('supertest');
 const app = require('../../src/app');
 const Rental = require('../../src/models/rentalModel');
@@ -116,6 +114,7 @@ describe('CRUD Rental', () => {
     const rental = await request(app).delete(`/api/v1/rental/${createRental.body._id}`).send();
     expect(rental.status).toBe(204);
   });
+
   it('should return id error for delete a rental', async () => {
     const createRental = await request(app)
       .post('/api/v1/rental')
@@ -135,8 +134,9 @@ describe('CRUD Rental', () => {
     const rental = await request(app).delete(`/api/v1/rental/${id}`).send();
     expect(rental.status).toBe(400);
   });
-  it('should return error rental not found', async () => {
+
+  it('should return empty body with status 204', async () => {
     const createRental = await request(app).get('/api/v1/rental').send();
-    expect(createRental.status).toBe(404);
+    expect(createRental.status).toBe(204);
   });
 });
