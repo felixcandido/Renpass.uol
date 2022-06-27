@@ -5,6 +5,7 @@
 <p>
   <img src="https://img.shields.io/badge/node-v16.13-brightgreen"/>
   <img src="https://img.shields.io/badge/npm-8.1-green"/>
+  <img src="https://img.shields.io/badge/tests-71-green"/>
 </p>
 
 ## Indice 
